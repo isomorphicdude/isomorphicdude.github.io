@@ -4,11 +4,12 @@ title: "First Blog"
 permalink: /2021-12-08/
 usemathjax: true
 categories: Probability and Statistics
+math: true
 ---
 
 ## Returning to recurrent state i.o.   
 
-A recurrent state is defined to be a state $i$ with $Pr(\cup_{n=1}^{\infty}\{X_n\}|X_0=i)=1$. Now we wish to show $Pr(\text{returning i.o.})=1$. 
+A recurrent state is defined to be a state $i$ with \(Pr(\cup_{n=1}^{\infty}\{X_n\}|X_0=i)=\). Now we wish to show $Pr(\text{returning i.o.})=1$. 
 
 Define $A_m$ to be the event that the chain returns to $i$ at the $m^{\text{th}}$ time step and $B_m$ to be the event that the chain never returns to $i$ after the $m^{\text{th}}$ time step.  
 
