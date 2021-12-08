@@ -33,17 +33,16 @@ github_username:  isomorphicdude
 
 plugins:
   - jekyll-feed
-plugins:
   - jekyll-remote-theme
 
 remote_theme: zivong/ockham
 
-markdown: kramdown
-kramdown:
-  input: GFM
-  hard_wrap: false
-  math_engine: mathjax
-  syntax_highlighter: rouge
+# markdown: kramdown
+# kramdown:
+#   input: GFM
+#   hard_wrap: false
+#   math_engine: mathjax
+#   syntax_highlighter: rouge
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
