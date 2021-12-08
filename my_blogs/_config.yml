@@ -30,11 +30,14 @@ twitter_username: jekyllrb
 github_username:  isomorphicdude
 
 # Build settings
-theme: ockham
+
 plugins:
   - jekyll-feed
+plugins:
   - jekyll-remote-theme
+
 remote_theme: zivong/ockham
+
 markdown: kramdown
 kramdown:
   input: GFM
