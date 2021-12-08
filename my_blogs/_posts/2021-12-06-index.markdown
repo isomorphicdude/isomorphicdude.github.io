@@ -4,3 +4,8 @@
 
 layout: home
 ---
+
+## Welcome !
+
+This is a place where I will write some blogs about maths and programming.  
+
