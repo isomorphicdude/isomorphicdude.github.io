@@ -32,9 +32,8 @@ plugins:
   
 plugins:
   - jekyll-feed
-
-#remote_theme: zivong/ockham
-remote_theme: pages-themes/minimal@v0.2.0
+  
+remote_theme: zivong/ockham
 markdown: kramdown
 # markdown: kramdown
 # kramdown:
