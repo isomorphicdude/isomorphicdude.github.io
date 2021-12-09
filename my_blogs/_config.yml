@@ -27,10 +27,11 @@ twitter_username: jekyllrb
 github_username:  isomorphicdude
 
 # Build settings
-
+plugins:
+  - jekyll-remote-theme
+  
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
 
 remote_theme: zivong/ockham
 markdown: kramdown
@@ -48,6 +49,12 @@ markdown: kramdown
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
 # exclude:
 #   - .sass-cache/
 #   - .jekyll-cache/
