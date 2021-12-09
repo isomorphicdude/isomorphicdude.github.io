@@ -2,19 +2,21 @@ title: Isomorphicdude's Blog
 email: your-email@example.com
 
 #baseurl: "/_posts" # the subpath of your site, e.g. /blog "_posts"
-url: " https://isomorphicdude.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+#url: " https://isomorphicdude.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  isomorphicdude
 
+
+markdown: kramdown
 # Build settings
-# plugins:
-#   - jekyll-remote-theme
+plugins:
+  - jekyll-remote-theme
   
 plugins:
   - jekyll-feed
   
-# remote_theme: zivong/ockham
-markdown: kramdown
+remote_theme: zivong/ockham
+
 # markdown: kramdown
 # kramdown:
 #   input: GFM
