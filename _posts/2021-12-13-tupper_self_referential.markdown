@@ -39,6 +39,7 @@ Note $mod(q \times 2^{-17x-r},2)$ is exactly the $(17x+r)^{th}$ binary entry of 
 $$
 n = \sum_{i=0}^{k} 2^ia_i
 $$  
+
 It is thus immediate that $mod(\frac{n}{2^i},2)$ gives $1$ when that digit is $1$ in the binary expansion.  
 Now it is clear that given the $(17x+p)^{th}$ entry being $1$, we have $y\cong p =r \ mod17$, as given $17 | N$, so the inequality is an indeed an indicator given the construction of string $s$.  
 
@@ -78,3 +79,5 @@ bitimg = 0.5<( (y//y_par) // 2**(y_par*x + (y%y_par)) )%2
 # Plot with up and down flipped
 result = np.flipud(bitimg)
 ```
+
+![Nintendo logo](/assets/nintendo.png)
