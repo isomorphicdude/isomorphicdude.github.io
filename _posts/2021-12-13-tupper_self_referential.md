@@ -49,4 +49,32 @@ For higher resolution, we may increase the value of $106$ and $17$.
 
 ## Implementation in Python
 
+```python
+import numpy as np
+from PIL import Image
 
+# Converting an image to array
+img = np.array(Image.open('nintendo.png').convert('L'))
+
+# Converting to bitmap
+img[img>0] = 1
+
+# Concantenating with the leftest column being the smaller ones, 
+# so at the right end of the binary string
+bitmap = img.T[::-1].flatten()
+s =  "".join(str(x) for x in bitmap)
+N = int(s,2)*17
+
+# Plotting the bitmap
+x_par = 106
+y_par = 17
+x_vals = np.arange(0,x_par)
+y_vals = np.arange(N,N+y_par)
+x, y = np.meshgrid(x_vals,y_vals)
+
+# Inequality
+bitimg = 0.5<( (y//y_par) // 2**(y_par*x + (y%y_par)) )%2
+
+# Plot with up and down flipped
+result = np.flipud(bitimg)
+```
