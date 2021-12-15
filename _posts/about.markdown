@@ -6,4 +6,4 @@ permalink: /about/
 
 This is the github page of isomorphicdude.  
 
-This site uses *jekyll* and the theme *ockham* by 
+This site uses *jekyll* and the theme *ockham*.
