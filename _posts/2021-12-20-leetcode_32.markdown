@@ -1,0 +1,88 @@
+---
+layout: post
+title: "Leetcode Problem 32 Dynamic Programming in Java"
+permalink: /2021-12-20/
+usemathjax: true
+categories: Computer Science
+math: true
+mathjax: true
+---
+
+# Problem 32
+## Statement  
+
+Given a string $s$ consisting of $($ and $)$, find the length of the longest valid substring of parentheses.  
+
+## Solution  
+
+We use a dynamic programming approach.  
+
+Call longest valid substring of parentheses ending at the $i$th position with $)$ **valid** if it is maximal and all parenthese inside it are matched. For instance, ```()()()``` is **valid**, but ```()())``` is not.  
+
+The subproblems are the length of those strings.  The entries ```D[i]``` of the array will store exactly those numbers and we have the following recurrence relation.  
+
+**1.** If the $i$th position is $)$ and the $i-1$th position is $($, then ```D[i]=D[i-2]+2```.  
+
+**2.** If the $i$th position is $)$ and the $i-1$th position is $)$, then we consider the starting point of the **valid** substring ending at $i-1$ (if any), whose index is given by ```i-D[i-1]```. Then we obtain recurrence relation depending on the position of the index.  
+
+A dynamic programming solution in Java is written below.  
+
+# Dynamic Programming Solution in Java:  
+
+```Java
+public static int longestValidParentheses(String s){
+        // Finding the longest substring (no. of characters) of valid parenthesis
+        // string of valid parenthesis is defined as a string with every bracket
+        // inside it matched
+        int n = s.length();
+        int max = 0;
+        // Array D stores the longest valid substring ending at i
+        int D[] = new int[n];
+
+        if (n<2){return 0;}
+
+        for (int i=1;i<n;i++){
+            StdOut.println(i);
+            if (s.charAt(i)==')'){
+                // Only consider those ending with )
+                if(s.charAt(i-1)=='(' && i==2){
+                    D[i]=2;
+                    if (D[i]>max){max=D[i];}
+                }
+                if(s.charAt(i-1)=='(' && i>=2)
+                {
+                    D[i]=D[i-2]+2;
+                    if (D[i]>max){max=D[i];}
+                } // previous is (, so matched
+                else{
+                    //previous is ), so consider the matching of ), if any
+                    int prev_ind = i-D[i-1]; //the index of the matching bracket of i-1 if any
+                    if(prev_ind-1>=0&&s.charAt(prev_ind-1)=='(')
+                    {
+                        // if previous index actually exists and there is something before it
+                        if(prev_ind>=2){
+                            // if previous index has at least 2 positions before it
+                            // and ( is before it, so 2 is added, and also result of D[prev-1-1]
+                            D[i]=D[i-1]+D[prev_ind-2]+2;
+
+                            //StdOut.println(prev_ind);
+
+                            if (D[i]>max){max=D[i];}
+                        }
+                        else if (prev_ind==1)
+                        {
+                            // else there is either only one position before
+                            // so if ( then add 2 else keep fixed
+                            D[i] = D[i-1] + 2;
+                            if (D[i]>max){max=D[i];}
+                        }
+                        // Note we ignore the case where the prev_ind-1 has )
+                        // which means the ith ) is not matched by maximality
+                    }
+                }
+            }
+        }
+        return (max);
+    }
+
+```
