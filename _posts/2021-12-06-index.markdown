@@ -7,5 +7,7 @@ layout: home
 
 ## Welcome !
 
+I am a second year maths undergraduate at Imperial College London.  
 This is a place where I will write some blogs about maths and programming.  
+Hope you will find the content interesting :)
 
