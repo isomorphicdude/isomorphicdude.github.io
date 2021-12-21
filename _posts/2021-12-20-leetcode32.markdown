@@ -29,7 +29,7 @@ The subproblems are the length of those strings.  The entries ```D[i]``` of the 
 A dynamic programming solution in Java is written below.  
 
 ## Solution in Java:  
-```Java
+```java
 public static int longestValidParentheses(String s)
 {
         // Finding the longest substring (no. of characters) of valid parenthesis
