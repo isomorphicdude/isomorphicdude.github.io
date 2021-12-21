@@ -27,7 +27,7 @@ twitter_username:
 github_username: isomorphicdude
 
 # Build settings
-theme: ockham
+#theme: ockham
 remote_theme: zivong/ockham
 plugins:
   - jekyll-feed
