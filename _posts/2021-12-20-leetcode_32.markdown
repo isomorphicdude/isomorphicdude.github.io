@@ -28,7 +28,7 @@ The subproblems are the length of those strings.  The entries ```D[i]``` of the 
 
 A dynamic programming solution in Java is written below.  
 
-# Dynamic Programming Solution in Java:  
+## Solution in Java:  
 
 ```Java
 public static int longestValidParentheses(String s){
