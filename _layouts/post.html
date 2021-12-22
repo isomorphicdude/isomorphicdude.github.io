@@ -28,7 +28,7 @@ layout: default
 
 </article>
 
-{% include disqus.html %}
+<!-- {% include disqus.html %} -->
 <!-- {% if jekyll.environment == "production" and site.disqus and page.comments != false %}
   
 {% endif %} -->
@@ -53,3 +53,12 @@ layout: default
     <span class="post-pagination-item older"></span>
   {% endif %}
 </div>
+
+<script src="https://utteranc.es/client.js"
+        repo="isomorphicdude/isomorphicdude.github.io"
+        issue-term="title"
+        label="Comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
