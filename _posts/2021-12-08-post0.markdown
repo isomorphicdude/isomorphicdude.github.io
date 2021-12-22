@@ -6,7 +6,6 @@ usemathjax: true
 categories: Probability and Statistics
 math: true
 mathjax: true
-comments: true
 ---
 
 ## Returning to recurrent state i.o.   

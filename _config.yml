@@ -25,14 +25,18 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
 github_username: isomorphicdude
-
+environment: production
 # Build settings
 #theme: ockham
 remote_theme: zivong/ockham
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
-disqus: <Isomorphic_Blog>
+# disqus: <Isomorphic_Blog>
+disqus:
+  # Leave shortname blank to disable comments site-wide.
+  # Disable comments for any post by adding `comments: false` to that post's YAML Front Matter.
+  shortname: https-isomorphicdude-github-io
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
