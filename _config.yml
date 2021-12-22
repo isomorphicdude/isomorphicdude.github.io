@@ -34,9 +34,9 @@ plugins:
   - jekyll-remote-theme
 
 # Disqus Comments
-disqus: <https-isomorphicdude-github-io>
-# disqus:
-#   shortname: https-isomorphicdude-github-io
+# disqus: <https-isomorphicdude-github-io>
+disqus:
+  shortname: https-isomorphicdude-github-io
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
