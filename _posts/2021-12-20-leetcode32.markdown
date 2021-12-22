@@ -7,6 +7,7 @@ categories: Computer Science
 math: true
 mathjax: true
 future: true
+comment_issue_id: 1
 ---
 
 # Problem 32
