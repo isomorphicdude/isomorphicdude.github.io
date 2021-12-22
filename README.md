@@ -1,3 +1,3 @@
 # isomorphicdude.github.io
-Personal Blog
-https://isomorphicdude.github.io
+
+Feel free to leave a comment:)
