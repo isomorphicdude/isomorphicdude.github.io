@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A bit of combinatorics in the proof of Taylor"
-permalink: /2021-12-20/
+permalink: /2021-12-23/
 usemathjax: true
 categories: Combinatorics
 math: true
