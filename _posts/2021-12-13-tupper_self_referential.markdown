@@ -3,7 +3,7 @@ layout: post
 title: "Tupper's self-referential formula"
 permalink: /2021-12-13/
 usemathjax: true
-categories: Computer Science
+categories: Computer-Science
 math: true
 mathjax: true
 ---

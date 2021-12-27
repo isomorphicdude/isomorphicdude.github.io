@@ -1,0 +1,12 @@
+---
+layout: post
+title: "CTC Loss and the Dynamic Programming Approach"
+permalink: /2021-12-27/
+usemathjax: true
+categories: Machine-Learning
+math: true
+mathjax: true
+---
+
+# Problem
+

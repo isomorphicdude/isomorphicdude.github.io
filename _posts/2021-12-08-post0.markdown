@@ -3,7 +3,7 @@ layout: post
 title: "First Blog"
 permalink: /2021-12-08/
 usemathjax: true
-categories: Probability and Statistics
+categories: Probability-and-Statistics
 math: true
 mathjax: true
 ---

@@ -3,7 +3,7 @@ layout: post
 title: "Leetcode Problem 32 Dynamic Programming in Java"
 permalink: /2021-12-20/
 usemathjax: true
-categories: Computer Science
+categories: Computer-Science
 math: true
 mathjax: true
 future: true

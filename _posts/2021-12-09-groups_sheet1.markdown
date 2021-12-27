@@ -3,7 +3,7 @@ layout: post
 title: "Groups Sheet 1"
 permalink: /2021-12-09/
 usemathjax: true
-categories: Groups and Rings
+categories: Algebra
 math: true
 mathjax: true
 ---
