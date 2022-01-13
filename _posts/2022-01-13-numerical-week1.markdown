@@ -57,18 +57,24 @@ $$
 
 
 ### Normal
-- $0<q<2^Q-1$, not all zero or one
+- $0<q<2^Q-1$, not all zero or one  
+  
 - represented by $2^{q-\sigma}(1\ . \ b_1 \cdots b_S)$, note the numbers after point does not necessarily correspond to those in base ten
 
-- double precision $64 \equiv 1023,11,52$, where they are shift, exponent, and significant resp. $1+11+52=64$
-- also single and half $32 \equiv 127,8,23, \quad 16 \equiv 15,5,10$
-- **e.g.** $\frac{1}{3} = 2^{-2}(1.0101\cdots) = 2^{13-15}(1.0101010101)$ in $16$ bits, with the $q=13=01101$ being exponent bit, $0$ as sign, $15$ comes from convention of half precision
+- double precision $64 \equiv 1023,11,52$, where they are shift, exponent, and significant resp. $1+11+52=64$  
+  
+- also single and half $32 \equiv 127,8,23, \quad 16 \equiv 15,5,10$  
+  
+- **e.g.** $\frac{1}{3} = 2^{-2}(1.0101\cdots) = 2^{13-15}(1.0101010101)$ in $16$ bits, with the $q=13=01101$ being exponent bit, $0$ as sign, $15$ comes from convention of half precision  
+  
 ### Sub-normal
-- All zeros for exponent so $2^{1-\sigma}(0.something)$
+- All zeros for exponent so $2^{1-\sigma}(0.something)$  
+  
 ### Special
 - All ones in exponent
 
-- If all significant are zeros, then infinity, `Inf` and `-Inf`
+- If all significant are zeros, then infinity, `Inf` and `-Inf`  
+  
 - Otherwise, not a number `NaN` for `0/0`
 
 ## Floating Pt. Arithmetic
