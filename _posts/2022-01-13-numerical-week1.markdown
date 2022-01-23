@@ -88,7 +88,9 @@ $$
 
 - non-associativity due to underflowing **e.g.** $(2^{-11}+1)+2^{-11}=1+2^{-11}=1$
 
-- evaluating exactly is difficult
+- Overflowing causes $10^{100}+1=10^{100}$, as not enough mantissa bits are there to reflect the addition, in `Float64` the largest should be $2^{53}-1$ to reflect the plus one.
+  
+- The recurring digits of numbers like $0.1$ and $0.2$ causes error in `Float16` or so as the mantissa bits cannot express fully. **e.g.** `Float16(0.1) / (Float16(1.1) - 1)` does not return `1`.
 
 
 ### Bounding Errors
@@ -111,4 +113,4 @@ $$
 \end{aligned}
 $$  
 
-- Error bound at every arithmetic step
+- Error is bounded at every arithmetic step and collected at the end using a crude machine epsilon to bound the absolute error
