@@ -3,7 +3,7 @@ layout: post
 title: "MATH50003 Week1"
 permalink: /2022-01-13/
 usemathjax: true
-categories: Numerical Analysis
+categories: Numerical-Analysis
 math: true
 mathjax: true
 ---
