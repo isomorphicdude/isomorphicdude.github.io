@@ -56,11 +56,16 @@ then such functions are called dual extensions at $a$.
 **Product and Chain rule still holds** for dual extensions, so can differentiate all common functions.  
 **e.g.**
 $$
-\begin{aligned}
-  f(x) &= exp(exp(x)cos(x)+sin(x)) \\
-  f(0.1+\epsilon) &= f(0.1) \ + f'(0.1)\epsilon \\
-  exp([e^{0.1}+e^{0.1}\epsilon][cos(0.1)-sin(0.1)\epsilon]+[sin(0.1)+cos(0.1)\epsilon]) &= e^{0.1} cos(0.1) +sin(0.1) + \mathbf{\epsilon} \ [e^{0.1}cos(0.1)-e^{0.1}sin(0.1)+cos(0.1)] \\
-\end{aligned}
+f(x) = exp(exp(x)cos(x)+sin(x))
+$$
+$$
+f(0.1+\epsilon) = f(0.1) \ + f'(0.1)\epsilon 
+$$
+$$
+exp([e^{0.1}+e^{0.1}\epsilon][cos(0.1)-sin(0.1)\epsilon]+[sin(0.1)+cos(0.1)\epsilon]) 
+$$
+$$
+= e^{0.1} cos(0.1) +sin(0.1) + \mathbf{\epsilon} \ [e^{0.1}cos(0.1)-e^{0.1}sin(0.1)+cos(0.1)]
 $$
 
 ## **Asymptotics**
@@ -73,10 +78,9 @@ $$
 
 ### **Relations**
 $$
-\begin{aligned}
-O(\phi(n)) \ O(\psi(n)) &= O(\phi(n)\psi(n))  \\
-O(\phi(n)) + O(\psi(n)) &= O(|\phi(n)| + |\psi(n)|)
-\end{aligned}
+O(\phi(n)) \ O(\psi(n)) = O(\phi(n)\psi(n))  $$
+$$
+O(\phi(n)) + O(\psi(n)) = O(|\phi(n)| + |\psi(n)|)
 $$
 ### **Example**
 ```julia
