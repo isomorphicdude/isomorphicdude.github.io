@@ -54,34 +54,49 @@ then such functions are called dual extensions at $a$.
 **e.g.** $cos(a+b\epsilon)=cos(a)-sin(a)b\epsilon$
 
 **Product and Chain rule still holds** for dual extensions, so can differentiate all common functions.  
-**e.g.**
+**e.g.**  
+
 $$
 f(x) = exp(exp(x)cos(x)+sin(x))
-$$
+$$  
+
 $$
 f(0.1+\epsilon) = f(0.1) \ + f'(0.1)\epsilon 
-$$
+$$  
+
 $$
 exp([e^{0.1}+e^{0.1}\epsilon][cos(0.1)-sin(0.1)\epsilon]+[sin(0.1)+cos(0.1)\epsilon]) 
-$$
+$$  
+
 $$
 = e^{0.1} cos(0.1) +sin(0.1) + \mathbf{\epsilon} \ [e^{0.1}cos(0.1)-e^{0.1}sin(0.1)+cos(0.1)]
-$$
+$$  
+
 
 ## **Asymptotics**
 
 ### **Big and Small O**  
 
-- $f(n) = O(\phi(n))$, if ratio $|\frac{f(n)}{\phi(n)}|$ is bounded.  
+$$
+f(n) = O(\phi(n)) \qquad |\frac{f(n)}{\phi(n)}|\leq C
+$$  
   
-- $f(n) = o(\phi(n))$, if ratio $|\frac{f(n)}{\phi(n)}|$ converges to $1$.  
+$$
+f(n) = o(\phi(n)) \qquad |\frac{f(n)}{\phi(n)}| \rightarrow 1
+$$  
 
 ### **Relations**
+- Multipicative  
+
 $$
-O(\phi(n)) \ O(\psi(n)) = O(\phi(n)\psi(n))  $$
+O(\phi(n)) \ O(\psi(n)) = O(\phi(n)\psi(n))  $$  
+
+- Additive
+  
 $$
 O(\phi(n)) + O(\psi(n)) = O(|\phi(n)| + |\psi(n)|)
-$$
+$$  
+
 ### **Example**
 ```julia
 cnt = 0
