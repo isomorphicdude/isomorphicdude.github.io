@@ -6,7 +6,44 @@ usemathjax: true
 categories: Numerical-Analysis
 math: true
 mathjax: true
----
+---  
+
+## **Matrix Norms**  
+
+### **Induced Norms:**  
+
+$$
+\|A \|_{X → Y} := \sup_{𝐯 : \|𝐯\|_X=1} \|A 𝐯\|_Y
+$$  
+if only $X$ then it's to itself.  
+
+### **Common Results**  
+
+- $||A||_1 = \max_{\text{columns}} ||\mathbf{a_j}||$, where $||\mathbf{a_j}||$ is the $1-norm$ of the *column*
+
+- $||A||_2 = \sigma_1$, the maximal singular value, and if $A$ invertible then $||A^{-1}|| = \sigma_n^{-1}$  
+
+- $||A||_{\infty} = \max_{\text{rows}} ||\mathbf{a_j}||$, where $||\mathbf{a_j}||$ is the $1-norm$ of the *row*  
+
+- $||A||_{1 \to \infty} = \max |a_{i,j}|$, the maximal entry, (see week5 solution 2.1)  
+
+- $||A||_F = \sqrt{tr(A^TA)}$
+- $||QA||_F = ||A||_F$, the Frobenius norm as the square root of sum of all entries squared.  
+
+- $||A||_2 \leq ||A||_F \leq \sqrt{r} ||A||_2$, $r$ being the rank of $A$
+
+## **To check**  
+
+```julia
+m,n = 5,3
+A = randn(m,n)
+opnorm(A,1) == maximum(norm(A[:,j],1) for j = 1:n)
+opnorm(A,Inf) == maximum(norm(A[k,:],1) for k = 1:m)
+opnorm(A) # the 2-norm
+
+```
+
+
 ## SVD
 
 
@@ -84,6 +121,8 @@ $$
 |δA| ≤ {n ϵ_{\rm m} \over 2-nϵ_{\rm m}}  |A|.
 $$
 Therefore
+### **Result**  
+
 $$
 \begin{aligned}
 \|δA\|_1 &≤  {n ϵ_{\rm m} \over 2-nϵ_{\rm m}} \|A \|_1 \\
