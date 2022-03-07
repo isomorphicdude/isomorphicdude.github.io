@@ -19,18 +19,46 @@ if only $X$ then it's to itself.
 
 ### **Common Results**  
 
-- $||A||_1 = \max_{\text{columns}} ||\mathbf{a_j}||$, where $||\mathbf{a_j}||$ is the $1-norm$ of the *column*
+- **1-Norm**  
+  
+$$
+||A||_1 = \max_{\textbf{columns}} ||\mathbf{a_j}||
+$$
 
-- $||A||_2 = \sigma_1$, the maximal singular value, and if $A$ invertible then $||A^{-1}|| = \sigma_n^{-1}$  
+- **2-Norm**  
 
-- $||A||_{\infty} = \max_{\text{rows}} ||\mathbf{a_j}||$, where $||\mathbf{a_j}||$ is the $1-norm$ of the *row*  
 
-- $||A||_{1 \to \infty} = \max |a_{i,j}|$, the maximal entry, (see week5 solution 2.1)  
+$$
+||A||_2 = \sigma_1
+$$   
 
-- $||A||_F = \sqrt{tr(A^TA)}$
-- $||QA||_F = ||A||_F$, the Frobenius norm as the square root of sum of all entries squared.  
+- the maximal singular value, and if $A$ invertible  
 
-- $||A||_2 \leq ||A||_F \leq \sqrt{r} ||A||_2$, $r$ being the rank of $A$
+$$
+||A^{-1}|| = \sigma_n^{-1}
+$$  
+
+- **$\mathbf{\infty}$-Norm**    
+
+$$
+||A||_{\infty} = \max_{\textbf{rows}} ||\mathbf{a_j}||
+$$  
+
+$$||A||_{1 \to \infty} = \max |a_{i,j}|$$  
+
+- the maximal entry, (see week5 solution 2.1)  
+
+- **Frobenius Norm**  
+
+$$||A||_F = \sqrt{tr(A^TA)}$$
+
+$$||QA||_F = ||A||_F$$  
+
+- the Frobenius norm as the square root of sum of all entries squared and unaltered when multiplied by orthogonal matrix.  
+
+$$||A||_2 \leq ||A||_F \leq \sqrt{r} ||A||_2$$  
+
+- $r$ being the rank of $A$
 
 ## **To check**  
 
