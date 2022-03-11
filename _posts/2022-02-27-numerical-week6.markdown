@@ -50,15 +50,15 @@ $$
 Construct linear systems and add initial condition as first row. Same matrix for first three but different RHS.  
 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
 𝐞_1^⊤ \\
 D_h
-\end{bmatrix} 𝐮^{\rm f} = \begin{bmatrix}
+\end{pmatrix} 𝐮^{\rm f} = \begin{pmatrix}
 1 \\
 -1/h & 1/h\\
 & \ddots & \ddots \\
 && -1/h & 1/h
-\end{bmatrix} 𝐮^{\rm f} = \begin{bmatrix} c \\ 𝐟^{\rm f} \end{bmatrix}
+\end{pmatrix} 𝐮^{\rm f} = \begin{pmatrix} c \\ 𝐟^{\rm f} \end{pmatrix}
 $$
 
 ## **Euler's Methods**  
@@ -149,22 +149,22 @@ $$
 Matrix has first and last row being initial condition; middle part is the *graph Laplacian*
 
 $$
-T =\begin{bmatrix}
+T =\begin{pmatrix}
 1 & 0 & \\
 1 & -2 & 1 \\ & ⋱ & ⋱ & ⋱ \\
 && 1 & -2 & 1 \\
 &&& 0 & 1 
-\end{bmatrix}
+\end{pmatrix}
 $$  
 
 Usually obtained from multiplying the above $T$ by  
 $$
-G = \begin{bmatrix}
+G = \begin{pmatrix}
 1 & 0 & \\
 -1/h^2 & 1 &  \\ & ⋱ & ⋱ & ⋱ \\
 &&  & 1 & -1/h^2 \\
 &&& 0 & 1 
-\end{bmatrix}
+\end{pmatrix}
 $$  
 
 So the equation becomes  
@@ -172,26 +172,26 @@ So the equation becomes
 $$
 GT=G \ \mathbf{f} \\
 \implies \\
-GT \mathbf{u} = \begin{bmatrix} c_0 \\f(x_2) - c_0/h^2 \\ f(x_3) \\ ⋮ \\ f(x_{n-2}) \\ f(x_{n-1}) - c_1/h^2 \\ c_1 \end{bmatrix}
+GT \mathbf{u} = \begin{pmatrix} c_0 \\f(x_2) - c_0/h^2 \\ f(x_3) \\ ⋮ \\ f(x_{n-2}) \\ f(x_{n-1}) - c_1/h^2 \\ c_1 \end{pmatrix}
 $$  
 
 where $GT$ is 
 $$
-\begin{bmatrix}
+\begin{pmatrix}
 1 & 0 & \cdots & 0\\
 0 & \frac{1}{h^2} \mathbf{\Delta} \\
 \vdots && \ddots \\
 0 & \cdots & &1
-\end{bmatrix}
+\end{pmatrix}
 $$  
 with 
 $$
-\mathbf{\Delta} = \begin{bmatrix}
+\mathbf{\Delta} = \begin{pmatrix}
  -2 & 1 \\
         1 & -2 & ⋱ \\
         & ⋱ &  ⋱ & 1 \\
         && 1 & -2  
-        \end{bmatrix}
+        \end{pmatrix}
 $$
 which has LU decomposition and easily invertible.  
 
