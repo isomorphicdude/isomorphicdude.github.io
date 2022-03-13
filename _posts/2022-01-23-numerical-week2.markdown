@@ -21,7 +21,14 @@ the $\frac{f''(t)h^2}{2! \ h}$ is the absolute error
 
 $$
 (f^{\rm FP}(x + h) ⊖ f^{\rm FP}(x)) ⊘ h = f'(x) + \underbrace{f'(x) δ_1 + {f''(t) \over 2} h (1 + \delta_1) + {δ^f_{x+h}- δ^f_x \over h} (1 + δ_1)}_{δ_{x,h}^{\rm FD}}
+$$  
+
+- Note the error bound (from lecture notes)  
+
 $$
+|δ_{x,h}^{\rm FD}| \leq {|f'(x)| \over 2} ϵ_{\rm m} + M h +  {4c ϵ_{\rm m} \over h}
+$$
+- for $M = \sup_{x \leq t \leq x+h} |f''(t)|$.
 
 ### **Difficulty**
 - Numerical instability in floating point arithmetic  
@@ -69,9 +76,19 @@ exp([e^{0.1}+e^{0.1}\epsilon][cos(0.1)-sin(0.1)\epsilon]+[sin(0.1)+cos(0.1)\epsi
 $$  
 
 $$
-= e^{0.1} cos(0.1) +sin(0.1) + \mathbf{\epsilon} \ [e^{0.1}cos(0.1)-e^{0.1}sin(0.1)+cos(0.1)]
-$$  
+= exp(e^{0.1} cos(0.1) +sin(0.1) + \mathbf{\epsilon} \ [e^{0.1}cos(0.1)-e^{0.1}sin(0.1)+cos(0.1)])
+$$   
 
+So the derivative at $0.1$ is given by the dual part times $exp(real)$  
+
+```julia
+# Can use ForwardDiff to verify
+using ForwardDiff
+f = x->exp(exp(x)*cos(x)+sin(x))
+g = x->ForwardDiff.derivative(f, x)
+g(0.1)==
+(exp(0.1)*cos(0.1)-exp(0.1)*sin(0.1)+cos(0.1))*exp(exp(0.1)*cos(0.1)+sin(0.1))
+```
 
 ## **Asymptotics**
 
