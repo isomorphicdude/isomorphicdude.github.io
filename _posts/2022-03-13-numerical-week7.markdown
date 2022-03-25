@@ -12,7 +12,7 @@ mathjax: true
 
 ## **Definitions and Properties**
 $$
-f(θ) = ∑_{k = -∞}^∞ f̂ₖ {\rm e}^{{\rm i} k θ}
+f(θ) = ∑_{k = -∞}^∞ f̂ₖ {e}^{i k θ}
 $$  
 where $\hat{f}_k = \frac{1}{2\pi} \int_0^{2\pi}f(\theta) e^{-ik\theta} d\theta$  
 
@@ -28,17 +28,17 @@ Use integration by parts to prove that the coefficients converge. (Example from 
 
 $$
 \begin{aligned}
-f̂ₖ &= \frac{1}{2π} \int^{2π}_{0} f(θ) {\rm e}^{-ikθ} dθ \\
-&=\frac{1}{2π}[ \frac{e^{-ik\theta}}{-ik} - \int^{2π}_{0} f'(θ) {\rm e}^{-ikθ}/(-ik\theta) dθ ] \\
+f̂ₖ &= \frac{1}{2π} \int^{2π}_{0} f(θ) {e}^{-ikθ} dθ \\
+&=\frac{1}{2π}[ \frac{e^{-ik\theta}}{-ik} - \int^{2π}_{0} f'(θ) {e}^{-ikθ}/(-ik\theta) dθ ] \\
 &= \cdots \\
-&=\frac{(-i)^λ}{2π k^{λ}} \int^{2π}_{0} f^{(λ)}(θ) {\rm e}^{-ikθ} dθ
+&=\frac{(-i)^λ}{2π k^{λ}} \int^{2π}_{0} f^{(λ)}(θ) {e}^{-ikθ} dθ
 \end{aligned}
 $$  
 
 given that $f^{(λ)}$ is uniformly bounded, the convergence follows  
 
 $$
-|∑_{k=n}^{\infty} f̂_k {\rm e}^{{\rm i}kθ}| \leq ∑_{k=n}^{\infty} |f̂_k | \leq C ∑_{k=n}^{\infty} k^{-λ} 
+|∑_{k=n}^{\infty} f̂_k {e}^{ikθ}| \leq ∑_{k=n}^{\infty} |f̂_k | \leq C ∑_{k=n}^{\infty} k^{-λ} 
 $$
 
 for some constant $C$.
@@ -57,7 +57,7 @@ where $\theta_j = \frac{2\pi j}{n}$.
 ### **Discrete Orthogonality**  
 
 $$
-∑_{j=0}^{n-1} {\rm e}^{i k θ_j} = \begin{cases} n & k = \ldots,-2n,-n,0,n,2n,\ldots  \cr
+∑_{j=0}^{n-1} {e}^{i k θ_j} = \begin{cases} n & k = \ldots,-2n,-n,0,n,2n,\ldots  \cr
 0 & \text{otherwise}
 \end{cases}
 $$  
@@ -82,10 +82,10 @@ $$
 $$
 \begin{aligned}
 Q_n &:= {1 \over √n} \begin{bmatrix} 1 & 1 & 1&  ⋯ & 1 \\
-                                    1 & {\rm e}^{-{\rm i} θ_1} & {\rm e}^{-{\rm i} θ_2} & ⋯ & {\rm e}^{-{\rm i} θ_{n-1}} \\
-                                    1 & {\rm e}^{-{\rm i} 2 θ_1} & {\rm e}^{-{\rm i} 2 θ_2} & ⋯ & {\rm e}^{-{\rm i} 2θ_{n-1}} \\
+                                    1 & {e}^{-{ i} θ_1} & {e}^{-{ i} θ_2} & ⋯ & {e}^{-{ i} θ_{n-1}} \\
+                                    1 & {e}^{-{ i} 2 θ_1} & {e}^{-{ i} 2 θ_2} & ⋯ & {e}^{-{ i} 2θ_{n-1}} \\
                                     ⋮ & ⋮ & ⋮ & ⋱ & ⋮ \\
-                                    1 & {\rm e}^{-{\rm i} (n-1) θ_1} & {\rm e}^{-{\rm i} (n-1) θ_2} & ⋯ & {\rm e}^{-{\rm i} (n-1) θ_{n-1}}
+                                    1 & {e}^{-{ i} (n-1) θ_1} & {e}^{-{ i} (n-1) θ_2} & ⋯ & {e}^{-{ i} (n-1) θ_{n-1}}
 \end{bmatrix} \\
 &= {1 \over √n} \begin{bmatrix} 1 & 1 & 1&  ⋯ & 1 \\
                                     1 & ω^{-1} & ω^{-2} & ⋯ & ω^{-(n-1)}\\
