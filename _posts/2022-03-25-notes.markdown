@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Leverages"
+permalink: /2022-03-25/
+usemathjax: true
+categories: Statistics
+math: true
+mathjax: true
+---  
+
+# Notes on leverages from MATH50011
+
+[**But I haven't figured out how to use `rmarkdown` on this**](https://isomorphicdude.github.io/leverage.html)
