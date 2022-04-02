@@ -113,4 +113,13 @@ $$
 f_n(θ_j) = f(θ_j)
 $$
 
+## **Approximation**  
+
+For the general (non-Taylor) case and $n = 2m+1$, we have
+$$
+f_{-m:m}(θ) := ∑_{k=-m}^m f̂_k^n {e}^{ik θ}
+$$
+converges to $f(θ)$ as $n \rightarrow ∞$. (See PS7 last question)  
+
+
 
