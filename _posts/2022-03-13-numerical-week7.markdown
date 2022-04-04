@@ -10,16 +10,18 @@ mathjax: true
 
 # **Fourier Series**  
 
-## **Definitions and Properties**
+## **Definitions and Properties**  
+
 $$
-f(θ) = ∑_{k = -∞}^∞ f̂ₖ {e}^{i k θ}
+f(θ) = ∑_{k = -∞}^∞ \hat{f}_k {e}^{i k θ}
 $$  
 where $\hat{f}_k = \frac{1}{2\pi} \int_0^{2\pi}f(\theta) e^{-ik\theta} d\theta$  
 
 (Note for Fourier Transform, we have $\hat{f}(\omega) = \int_{-\infty}^{+\infty} f(x) e^{i\omega x}dx$)  
 
 ### **Convergence**  
-If $∑_{k = -∞}^∞ |f̂ₖ| < \infty$, then converges to the true function.  
+
+If $∑_{k = -∞}^∞ |\hat{f}_k| < \infty$, then converges to the true function.  
 
 
 ### **Decaying of Coefficients**  
@@ -67,18 +69,29 @@ $$
 Using lemma above and expanding the $f(\theta_j)$'s, we get if $𝐟̂$ is absolutely convergent then  
 
 $$
-f̂_k^n = ⋯ + f̂_{k-2n} + f̂_{k-n} + f̂_k + f̂_{k+n} + f̂_{k+2n} + ⋯
+\hat{f}_k^n = ⋯ + \hat{f}_{k-2n} + \hat{f}_{k-n} + \hat{f}_k + \hat{f}_{k+n} + \hat{f}_{k+2n} + ⋯
 $$
 
-It follows that for all $p ∈ ℤ$, $f̂_k^n = f̂_{k+pn}^n$, which says the approximation to the $k^{th}$ coefficient using $n$ terms is the same as the approximation to the $(k+pn)^{th}$ term. This is useful in FFT.
+### **Aliasing**  
+
+It follows that for all $p ∈ ℤ$
+
+$$
+\hat{f}_k^n = \hat{f}_{k+pn}^n
+$$ 
+
+which says the approximation to the $k^{th}$ coefficient using $n$ terms is the same as the approximation to the $(k+pn)^{th}$ term. This is useful in FFT.
 
 
 ## **Discrete Fourier Transform**  
-We use the matrix times the values of $f$ at each $\theta_j$ to approximate the Fourier coefficients as above  
+We use the matrix times the values of $f$ at each $\theta_j$ to approximate the Fourier coefficients as above (note by aliasing the method also computes the negative indexed ones)
 
 $$
 \hat{f}_k^n = \frac{1}{n}\sum_{j=0}^{n-1} f(\theta_j) e^{-ik\theta_j}
-$$
+$$  
+
+Let $\omega=exp(i\frac{2\pi}{n})$  
+
 $$
 \begin{aligned}
 Q_n &:= {1 \over √n} \begin{bmatrix} 1 & 1 & 1&  ⋯ & 1 \\
@@ -98,7 +111,7 @@ $$
 Then  
 
 $$
-\hat{f}_k^n = \frac{1}{\sqrt{n}} Q_n \begin{bmatrix}f(\theta_0) \\ 
+\begin{bmatrix}f_0^n \\ f_1^n \\ \vdots \\ f_{n-1}^n\end{bmatrix} = \frac{1}{\sqrt{n}} Q_n \begin{bmatrix}f(\theta_0) \\ 
                                  \vdots \\
                                  f(\theta_{n-1}) 
                    \end{bmatrix}
@@ -106,18 +119,18 @@ $$
 
 ### **Properties**  
 
-- $Q_n$ is unitary: $Q_n^⋆ Q_n = Q_n Q_n^⋆ = I$.  
+- $Q_n$ is unitary: $Q_n^* Q_n = Q_n Q_n^* = I$.  
 
-- $f_n(θ)$ interpolates $f$ at $θ_j$:
+- $f_n(θ)$ interpolates $f$ at $θ_j$ for Taylor (same for general case):
 $$
-f_n(θ_j) = f(θ_j)
+f_n(θ_j) =\sum_{k=0}^{n-1} \hat{f}_k^n e^{ik\theta_j} =f(θ_j)
 $$
 
 ## **Approximation**  
 
 For the general (non-Taylor) case and $n = 2m+1$, we have
 $$
-f_{-m:m}(θ) := ∑_{k=-m}^m f̂_k^n {e}^{ik θ}
+f_{-m:m}(θ) := ∑_{k=-m}^m \hat{f}_k^n {e}^{ik θ}
 $$
 converges to $f(θ)$ as $n \rightarrow ∞$. (See PS7 last question)  
 
