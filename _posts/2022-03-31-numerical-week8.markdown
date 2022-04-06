@@ -7,6 +7,7 @@ categories: Numerical-Analysis
 math: true
 mathjax: true
 ---  
+
 # **Orthogonal Polynomials**  
 
 ## **Motivation**  
@@ -139,7 +140,7 @@ $$
     U_1(x)&=2x \\
     U_2(x)&=4x^2-1 \\
     U_3(x)&=8x^3-4x \\
-    U_4(x)&=16x^4-12x^2+1
+    U_4(x)&=16x^4-12x^2+1 \\
 \end{aligned}
 $$  
 
@@ -178,9 +179,17 @@ $$
     P_1(x)&=x \\
     P_2(x)&=\frac{1}{2}(3x^2-1) \\
     P_3(x)&=\frac{1}{2}(5x^3-3x) \\
-    P_4(x)&=\frac{1}{8}(35x^4-30x^2+3)
+    P_4(x)&=\frac{1}{8}(35x^4-30x^2+3) \\
 \end{aligned}
-$$  
+$$   
+
+
+**A few comments**  
+- The $n$ roots of the Legendre polynomial are all real and in the interval $[-1,1]$  
+
+- The choice of scaling (leading coefficient) makes $P_k(1)=1$  
+  
+  
 
 ### **Hermite**  
 
