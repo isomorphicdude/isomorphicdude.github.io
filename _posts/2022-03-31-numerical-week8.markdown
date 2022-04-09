@@ -36,7 +36,7 @@ Defined for positive weight $w(x)>0$ on interval $(a,b)$
 
 $$
 \langle f,g \rangle:=\int_a^b f(x)g(x)w(x)dx
-$$
+$$  
 
 ## **Existence and Uniqueness**   
 
@@ -89,7 +89,7 @@ $$
 
 **Weight:** $w(x) = 1/\sqrt{1-x^2}$ on $[-1,1]$.  
 
-**Alternative:** $T_n(cos\theta)=cos(n\theta)$  
+**Alternative:** $T_n(x)=\cos(n \arccos x)$  
 
 **3-term Recurrence:**  
 
@@ -112,6 +112,14 @@ $$
 \end{aligned}
 $$   
 
+**Roots:**  
+
+$$
+\begin{aligned}
+    x_j = \cos(\theta_j)=\cos(\frac{\pi (k-1/2)}{n})
+\end{aligned}
+$$
+
 ### **Chebyshev 2nd**   
 
 $$
@@ -122,7 +130,7 @@ U_n(x) &= 2^{n} x^n + O(x^{n-1})
 $$  
 
 **Weight:** $w(x) = \sqrt{1-x^2}$ on $[-1,1]$.  
-**Alternative:** $U_n(x)=\frac{sin(n+1)\theta}{sin \theta}$  
+**Alternative:** $U_n(x)=\frac{\sin(n+1) \arccos x}{\sin \arccos x}$  
 
 **3-term Recurrence:**   
 
@@ -143,6 +151,7 @@ $$
     U_4(x)&=16x^4-12x^2+1 \\
 \end{aligned}
 $$  
+
 
 ### **Legendre**  
 
