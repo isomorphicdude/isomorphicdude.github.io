@@ -8,27 +8,46 @@ math: true
 mathjax: true
 ---
 
-# Week 2
-## **Finite Difference** 
+# **Numerical Differentiation** 
 
-### **Goal**
-- Approximate by evaluating $\frac{f(x+h)-f(x)}{h}$ (one-sided), $\frac{f(x+h)-f(x-h)}{2h}$ (central difference), $\frac{f(x+h) - 2f(x) + f(x-h)}{h^2}$ (second-derivative)
+## **Finite Difference**   
+
+  $$
+  \frac{f(x+h)-f(x)}{h} \qquad \text{(one-sided)}
+  $$  
+
+  $$
+  \frac{f(x+h)-f(x-h)}{2h} \qquad \text{(central difference)}
+  $$   
+  
+  $$
+  \frac{f(x+h) - 2f(x) + f(x-h)}{h^2} \qquad \text{(second-derivative)}
+  $$   
 
 - Recall Taylor's series with remainder term up to 2 (including 2 remainder), 
 the $\frac{f''(t)h^2}{2! \ h}$ is the absolute error
 
-- When bounding, often get rid of goal $f'(x)$ and the denominator $h$, also assuming division by $h$ and addition both exact. 
+- When bounding, often get rid of goal $f'(x)$ and the denominator $h$, also assuming division by $h$ and addition both exact.  
+
+- The following gives error bound for estimating $f'(x)$.  
 
 $$
 (f^{\rm FP}(x + h) ⊖ f^{\rm FP}(x)) ⊘ h = f'(x) + \underbrace{f'(x) δ_1 + {f''(t) \over 2} h (1 + \delta_1) + {δ^f_{x+h}- δ^f_x \over h} (1 + δ_1)}_{δ_{x,h}^{\rm FD}}
 $$  
 
-- Note the error bound (from lecture notes)  
+- Note the error bound (from lecture notes)   
 
 $$
 |δ_{x,h}^{\rm FD}| \leq {|f'(x)| \over 2} ϵ_{\rm m} + M h +  {4c ϵ_{\rm m} \over h}
+$$  
+
+- where we have a bounded second derivative   
+
 $$
-- for $M = \sup_{x \leq t \leq x+h} |f''(t)|$.
+M =\sup_{x \leq t \leq x+h} |f''(t)|
+$$   
+    
+
 
 ### **Difficulty**
 - Numerical instability in floating point arithmetic  
@@ -49,37 +68,52 @@ $g=1+x/3+x^2$ analogous.
 ## **Differentiation with Dual Numbers**
 Take $a+b\epsilon$, where $\epsilon ^2=0$.  
 
-For any polynomial 
-$$p(a+b\epsilon)=p(a)+bp'(a)\epsilon$$
+For any polynomial  
+
+$$
+p(a+b\epsilon)=p(a)+bp'(a)\epsilon
+$$  
+
 
 Thus for any other functions, express them using *Taylor* and differentiate term by term.
 
-### **Dual Extension**
-If 
-$$f(a+b\epsilon)=f(a)+bf'(a)\epsilon$$  
+### **Dual Extension**  
+
+If   
+
+$$
+f(a+b\epsilon)=f(a)+bf'(a)\epsilon
+$$    
+
 then such functions are called dual extensions at $a$.  
-**e.g.** $cos(a+b\epsilon)=cos(a)-sin(a)b\epsilon$
+**e.g.** $\cos(a+b\epsilon)=\cos(a)-\sin(a)b\epsilon$  
+
+Also valid for some functions with non-convergent Taylor series  
+
+$$
+|a+b\epsilon|=|a|+b \  r'(a) \epsilon
+$$  
 
 **Product and Chain rule still holds** for dual extensions, so can differentiate all common functions.  
 **e.g.**  
 
 $$
-f(x) = exp(exp(x)cos(x)+sin(x))
+f(x) = \exp(\exp(x)\cos(x)+\sin(x))
 $$  
 
 $$
 f(0.1+\epsilon) = f(0.1) \ + f'(0.1)\epsilon 
-$$  
-
-$$
-exp([e^{0.1}+e^{0.1}\epsilon][cos(0.1)-sin(0.1)\epsilon]+[sin(0.1)+cos(0.1)\epsilon]) 
-$$  
-
-$$
-= exp(e^{0.1} cos(0.1) +sin(0.1) + \mathbf{\epsilon} \ [e^{0.1}cos(0.1)-e^{0.1}sin(0.1)+cos(0.1)])
 $$   
 
-So the derivative at $0.1$ is given by the dual part times $exp(real)$  
+$$
+\exp([e^{0.1}+e^{0.1}\epsilon][\cos(0.1)-\sin(0.1)\epsilon]+[\sin(0.1)+\cos(0.1)\epsilon]) 
+$$   
+
+$$
+= \exp(e^{0.1} \cos(0.1) +\sin(0.1) + \mathbf{\epsilon} \ [e^{0.1}\cos(0.1)-e^{0.1}\sin(0.1)+\cos(0.1)])
+$$   
+
+So the derivative at $0.1$ is given by the dual part times $\exp(real)$  
 
 ```julia
 # Can use ForwardDiff to verify
