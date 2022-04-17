@@ -8,8 +8,8 @@ math: true
 mathjax: true
 ---
 
-# Week 3
-## **Structured Matrices**
+
+# **Structured Matrices**
 
 ### **Dense**
 - **Dense vector** Sequence squeezed together of $np$ bits, where each element is in $p-bit$ representation, has **length** and **pointer**  
@@ -56,7 +56,43 @@ in second order odes
 ```julia
 D = Diagonal(randn(n))
 T = Tridiagonal(randn(n-1), randn(n), randn(n-1))
-```
+```  
+
+### **One-column Lower Triangular**  
+
+$$
+L_j  = I + \begin{bmatrix} 𝟎_j \\ 𝐥_j \end{bmatrix} 𝐞_j^⊤
+$$  
+For instance
+$$
+\begin{bmatrix} 1 \\ 
+ & 1 \\ 
+& -\frac{a_{32}^1}{a_{22}^1} & 1 \\
+& ⋮ & & \ddots \\
+& -\frac{a_{n2}^1}{a_{22}^1} & \cdots && 1
+\end{bmatrix}
+$$  
+
+**Properties**  
+
+- (Inverse is negative)  
+
+$$
+L_j^{-1}  = I - \begin{bmatrix} 𝟎_j \\ 𝐥_j \end{bmatrix} 𝐞_j^⊤
+$$  
+
+- (Product is sum)  
+
+$$
+L_jL_k  = I + \begin{bmatrix} 𝟎_j \\ 𝐥_j \end{bmatrix} 𝐞_j^⊤ + \begin{bmatrix} 𝟎_k \\ 𝐥_k \end{bmatrix} 𝐞_k^⊤
+$$  
+
+- (Pseudo-commuting with Permutation)  
+
+$$
+P_{\sigma} L_j = \tilde{L_j} P_{\sigma}
+$$   
+$\sigma$ only changing the first $j$ entries) , the $\mathbf{l_j}$ above permuted by the last $j+1$permutation of $P_{\sigma}$.  
 
 ## **Premuation Matrices**
 
@@ -96,12 +132,25 @@ Define $\bar{v} = \frac{x}{||x||}$, the reflection matrix $Q_v$ is given by $Q_{
   
 - $Q_{\bar{v}}Q_{\bar{v}}^T=I$  
 
-**Householder Relfection**  
+### **Householder Relfection**  
 
 $$
 y= \mp ||x||e_1+x
 $$  
 
-Choose $v$ as normalized $y$, then $Q=I-2\bar{v} \bar{v}^T$ relfects $x$ to the positive/negative $x-axis$. (positive for minus sign).  
+Choose $v$ as normalized $y$, then 
+
+$$
+Q_{\mathbf{x}}^{\pm, H}=Q_{\mathbf{x}}^{-sign(x_1),H}=I-2\bar{v} \bar{v}^T
+$$    
+With $x_1$ being the first entry of $\mathbf{x}$.  
 
 Note that `sign(x1)` is often used to avoid numerical instability when applying the `-` sign.  
+
+Also note the householder reflection matrix has all the properties of a reflection matrix and in addition  
+
+$$
+Q_{\mathbf{x}}^{\pm, H} = \pm ||\mathbf{x}||\mathbf{e}_1
+$$  
+
+so send the vector from which the matrix is constructed to a multiple of $\mathbf{e}_1$.  
