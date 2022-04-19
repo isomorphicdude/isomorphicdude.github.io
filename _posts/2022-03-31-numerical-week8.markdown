@@ -48,7 +48,7 @@ Given weight $w(x)$, can construct orthogonal polynomials from $\{1,x,x^2,...\}$
 
 Given weight $w(x)$ and the constructed orthogonal polynomials $\{p_0(x), p_1(x),\dots\}$, the following are equivalent.  
 
-- $deg \ p(x) =n$ and $\langle p, r \rangle=0$ for all $r(x)$ with degree less than $n$.  
+- $\deg \ p(x) =n$ and $\langle p, r \rangle=0$ for all $r(x)$ with degree less than $n$.  
 
 - $p(x)=cp_n(x)$ for some constant $c$.  
 
@@ -87,18 +87,37 @@ T_n(x) &= 2^{n-1} x^n + O(x^{n-1})
 \end{aligned}
 $$  
 
-**Weight:** $w(x) = 1/\sqrt{1-x^2}$ on $[-1,1]$.  
+**Weight:**   
 
-**Alternative:** $T_n(x)=\cos(n \arccos x)$  
+$$
+w(x) = 1/ \sqrt{1-x^2} \qquad x \in [-1,1]
+$$  
 
-**3-term Recurrence:**  
+**Normalization Constant**  
+
+$$
+\begin{aligned}
+    q_0(x)&=\frac{1}{\sqrt{\pi}} \\
+    q_k(x)&=\sqrt{\frac{2}{\pi}}
+\end{aligned}
+$$  
+
+**Alternative:**  
+
+$$
+T_n(x)=\cos(n \arccos x)
+$$    
+
+
+**3-term Recurrence:**   
 
 $$
 \begin{aligned}
     xT_0(x)&=T_1(x) \\
     xT_n(x)&=\frac{T_{n-1}(x)+T_{n+1}(x)}{2} 
 \end{aligned}
-$$
+$$  
+
 
 **First Few:**  
 
@@ -111,6 +130,8 @@ $$
     T_4(x)&=8x^4-8x^2+1 \\
 \end{aligned}
 $$   
+
+
 
 **Roots:**  
 
@@ -129,8 +150,17 @@ U_n(x) &= 2^{n} x^n + O(x^{n-1})
 \end{aligned}
 $$  
 
-**Weight:** $w(x) = \sqrt{1-x^2}$ on $[-1,1]$.  
-**Alternative:** $U_n(x)=\frac{\sin(n+1) \arccos x}{\sin \arccos x}$  
+**Weight:**   
+
+$$
+w(x) = \sqrt{1-x^2} \qquad x \in [-1,1]
+$$  
+
+**Alternative:**   
+
+$$
+U_n(x)=\frac{\sin[(n+1) (\arccos x)]}{\sin (\arccos x)}
+$$  
 
 **3-term Recurrence:**   
 
@@ -142,6 +172,7 @@ $$
 $$
 
 **First Few:**  
+
 $$
 \begin{aligned}
     U_0(x)&=1 \\
@@ -150,6 +181,12 @@ $$
     U_3(x)&=8x^3-4x \\
     U_4(x)&=16x^4-12x^2+1 \\
 \end{aligned}
+$$  
+
+**Roots:**  
+
+$$
+x_k = \cos(\frac{k\pi}{n+1})
 $$  
 
 
@@ -162,13 +199,19 @@ $$
 \end{aligned}
 $$  
 
-**Weight:** $w(x) = 1$ on $[-1,1]$.  
+**Weight:** 
+
+$$
+w(x) = 1 \qquad x \in [-1,1]
+$$    
 
 **Alternative:**   
 (Rodriguez Formula)  
+
 $$
 P_n(x)=\frac{1}{(-2)^n n!}\frac{d^n}{dx^n}(1-x^2)^n
-$$
+$$  
+
 
 **3-term Recurrence:**   
 
@@ -177,7 +220,8 @@ $$
     xP_0(x)&=P_1(x) \\
     (2n+1)xP_n(x)&=nP_{n-1}(x)+(n+1)P_{n+1}(x)
 \end{aligned}
-$$
+$$  
+
 
 
 **First Few**  
@@ -194,6 +238,7 @@ $$
 
 
 **A few comments**  
+
 - The $n$ roots of the Legendre polynomial are all real and in the interval $[-1,1]$  
 
 - The choice of scaling (leading coefficient) makes $P_k(1)=1$  
@@ -207,16 +252,21 @@ $$
     H_0(x)&=1 \\
     H_n(x)&=2^nx^n+O(x^{n-1})
 \end{aligned}
-$$ 
+$$   
 
-**Weight:** $w(x) = \exp(-x^2)$  on $(-∞,∞)$  
+
+**Weight:**   
+
+$$
+w(x) = \exp(-x^2) \qquad x \in (-∞,∞)
+$$  
 
 **Alternative:**  
-(Rodriguez Formula)  
+(Rodriguez Formula)   
 
 $$
 H_n(x)=(-1)^n \frac{d^n}{dx^n}exp(-x^2)
-$$
+$$  
 
 
 **3-term Recurrence:**   
@@ -226,7 +276,7 @@ $$
     xH_0(x)&=H_1(x)/2 \\
     xH_n(x)&=-nH_{n-1}(x) + H_{n+1}(x)/2
 \end{aligned}
-$$
+$$  
 
 
 **First Few**  
@@ -239,7 +289,7 @@ $$
     H_3(x)&=8x^3-12x \\
     H_4(x)&=16x^4-48x^2+12 \\
 \end{aligned}
-$$
+$$  
 
 
 ## **Jacobi Matrices**  
@@ -252,7 +302,7 @@ X = \begin{bmatrix} a_0 & c_0 \\
                     & b_1 & a_2 & ⋱ \\
                     && ⋱ & ⋱
     \end{bmatrix}
-$$  
+$$   
 
 So  
 

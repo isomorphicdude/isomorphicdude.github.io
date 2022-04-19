@@ -22,7 +22,7 @@ if only $X$ then it's to itself.
 - **1-Norm**  
   
 $$
-||A||_1 = \max_{\textbf{columns}} ||\mathbf{a_j}||
+||A||_1 = \max_{\textbf{columns}} ||\mathbf{a_j}||_1
 $$
 
 - **2-Norm**  
@@ -41,26 +41,34 @@ $$
 - **$\mathbf{\infty}$-Norm**    
 
 $$
-||A||_{\infty} = \max_{\textbf{rows}} ||\mathbf{a_j}||
+||A||_{\infty} = \max_{\textbf{rows}} ||\mathbf{a_j}||_1
 $$  
 
-$$||A||_{1 \to \infty} = \max |a_{i,j}|$$  
+$$
+||A||_{1 \to \infty} = \max |a_{i,j}|
+$$    
 
 - the maximal entry, (see week5 solution 2.1)  
 
 - **Frobenius Norm**  
 
-$$||A||_F = \sqrt{tr(A^TA)}$$
+$$
+||A||_F = \sqrt{tr(A^TA)}
+$$  
 
-$$||QA||_F = ||A||_F$$  
+$$
+||QA||_F = ||A||_F
+$$   
 
 - the Frobenius norm as the square root of sum of all entries squared and unaltered when multiplied by orthogonal matrix.  
 
-$$||A||_2 \leq ||A||_F \leq \sqrt{r} ||A||_2$$  
+$$
+||A||_2 \leq ||A||_F \leq \sqrt{r} ||A||_2
+$$    
 
 - $r$ being the rank of $A$
 
-## **To check**  
+## **To check**    
 
 ```julia
 m,n = 5,3
@@ -69,10 +77,10 @@ opnorm(A,1) == maximum(norm(A[:,j],1) for j = 1:n)
 opnorm(A,Inf) == maximum(norm(A[k,:],1) for k = 1:m)
 opnorm(A) # the 2-norm
 
-```
+```  
 
 
-## SVD
+## **SVD**
 
 
 ## **Conditional Numbers**

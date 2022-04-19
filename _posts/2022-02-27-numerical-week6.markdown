@@ -65,29 +65,34 @@ $$
 
 &nbsp;
 
-**System to solve:**  
+**System to solve:**   
+
 $$
 \begin{aligned}
 u(0) &= c \\
 u'(t)-a(t)u(t) &= f(t)
 \end{aligned}
-$$  
+$$   
+
 
 &nbsp;
 
 **Methods to use**:  
 
-Similar as above with $k = 1,2,\cdots, n-1$
+Similar as above with $k = 1,2,\cdots, n-1$  
+
 $$
 \begin{aligned}
 {u_{k+1}-u_{k} \over h} - a(t_k)u_k &= f(t_k) \qquad\text{(Forward-Euler)} \\
 {u_{k+1}-u_{k} \over h} - a(t_{k+1})u_k &= f(t_{k+1}) \qquad\text{(Backward-Euler)} \\
 \end{aligned}
-$$  
+$$   
+
 
 &nbsp;
 
-**Forward-Substitution**  
+**Forward-Substitution**   
+
 $$
 \begin{aligned}
 u_1 &=c \\
@@ -96,18 +101,22 @@ u_{k+1} &= (1-ha(t_{k+1}))^{-1}(u_k + hf(t_{k+1})) \qquad \text{(Backward-Euler)
 \end{aligned}
 $$   
 
+
 &nbsp;
 
 **System of equations**  
 
-Usually re-casted from higher derivatives  
+Usually re-casted from higher derivatives   
+
 $$
 \begin{aligned}
 𝐮(0) &= 𝐜 \\
 𝐮'(t) - A(t) 𝐮(t) &= 𝐟(t)
 \end{aligned}
-$$  
-Use the forward-substitution as above but with matrices  
+$$   
+
+Use the forward-substitution as above but with matrices   
+
 $$
 \begin{aligned}
 𝐮_1 &= c \\
@@ -116,37 +125,44 @@ $$
 \end{aligned}
 $$  
 
+
 &nbsp;
 
 **Nonlinear systems**  
 
 $$
 𝐮' = f(t, 𝐮(t))
-$$
-becomes:
+$$  
+
+becomes:  
+
 $$
 𝐮_{k+1} = 𝐮_k + h f(x_k, 𝐮_k)
-$$  
+$$   
+
 So can be solved similarly.  
 
-## **Poisson with Dirichlet**  
+## **Poisson with Dirichlet**   
 
 $$
 \begin{aligned}
 u(0) &= c_0 \\
-u'' &= f(x) \\
+u''(x) &= f(x) \\
 u(1) &= c_1 
 \end{aligned}
-$$  
-with discretization  
+$$   
+
+with discretization   
+
 $$
 \begin{aligned}
 u_0 &= c_0 \\
  {u_{k-1} - 2u_k + u_{k+1} \over h^2} &= f(x_k) \\
 u_1 &= c_1
 \end{aligned}
-$$  
-Matrix has first and last row being initial condition; middle part is the *graph Laplacian*
+$$   
+
+Matrix has first and last row being initial condition; middle part is the *graph Laplacian*  
 
 $$
 T =\begin{pmatrix}
@@ -155,9 +171,10 @@ T =\begin{pmatrix}
 && 1 & -2 & 1 \\
 &&& 0 & 1 
 \end{pmatrix}
-$$  
+$$   
 
-Usually obtained from multiplying the above $T$ by  
+Usually obtained from multiplying the above $T$ by   
+
 $$
 G = \begin{pmatrix}
 1 & 0 & \\
@@ -165,26 +182,31 @@ G = \begin{pmatrix}
 &&  & 1 & -1/h^2 \\
 &&& 0 & 1 
 \end{pmatrix}
-$$  
+$$   
 
-So the equation becomes  
+
+So the equation becomes   
 
 $$
 GT=G \ \mathbf{f} \\
 \implies \\
 GT \mathbf{u} = \begin{pmatrix} c_0 \\f(x_2) - c_0/h^2 \\ f(x_3) \\ ⋮ \\ f(x_{n-2}) \\ f(x_{n-1}) - c_1/h^2 \\ c_1 \end{pmatrix}
-$$  
+$$   
 
-where $GT$ is 
+
+where $GT$ is   
+
 $$
-\begin{pmatrix}
+GT=\begin{pmatrix}
 1 & 0 & \cdots & 0\\
 0 & \frac{1}{h^2} \mathbf{\Delta} \\
 \vdots && \ddots \\
 0 & \cdots & &1
 \end{pmatrix}
-$$  
-with 
+$$   
+
+with  
+
 $$
 \mathbf{\Delta} = \begin{pmatrix}
  -2 & 1 \\
@@ -192,20 +214,24 @@ $$
         & ⋱ &  ⋱ & 1 \\
         && 1 & -2  
         \end{pmatrix}
-$$
+$$  
+
 which has LU decomposition and easily invertible.  
 
-## **Convergence**  
+## **Convergence**   
+
 
 **Consistency** and **Stability** needs to be shown  
 - Consistent: discretization solves the probelm with bounded error
 - Stability: operator norm of inverse discretization matrix does not blow up  
 
-They are used in proving the following error converges to $0$
+They are used in proving the following error converges to $0$ (below is the forward Euler)  
+
 $$
-\|𝐮ᶠ - 𝐮_{exact}\|_∞  = \|Δ^{-1} (Δ𝐮ᶠ - Δ𝐮)\|_∞  ≤ \|Δ^{-1}\|_∞  \| {\bf\delta} \|_∞ 
-$$  
-where $Δ$ is the discretization matrix, $𝐮ᶠ$ is the approximation, $\| {\bf\delta} \|_∞$ the error bound.  
+\|𝐮ᶠ - 𝐮_{exact}\|_∞  = \|L^{-1} (L𝐮ᶠ - L𝐮)\|_∞  ≤ \|L^{-1}\|_{1 \to \infty}  \| {\bf\delta} \|_1
+$$    
+
+where $L$ is the discretization matrix, $𝐮ᶠ$ is the approximation, $\| {\bf\delta} \|_1$ the error bound; note the matrix norm is from $1-$norm to $\infty-$norm.  
 
 See notes for more...  
 
