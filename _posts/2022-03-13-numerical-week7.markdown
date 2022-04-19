@@ -15,13 +15,21 @@ mathjax: true
 $$
 f(θ) = ∑_{k = -∞}^∞ \hat{f}_k {e}^{i k θ}
 $$  
-where $\hat{f}_k = \frac{1}{2\pi} \int_0^{2\pi}f(\theta) e^{-ik\theta} d\theta$  
+
+where   
+
+$$
+\hat{f}_k = \frac{1}{2\pi} \int_0^{2\pi}f(\theta) e^{-ik\theta} d\theta
+$$    
 
 (Note for Fourier Transform, we have $\hat{f}(\omega) = \int_{-\infty}^{+\infty} f(x) e^{i\omega x}dx$)  
 
 ### **Convergence**  
+If  
 
-If $∑_{k = -∞}^∞ |\hat{f}_k| < \infty$, then converges to the true function.  
+$$∑_{k = -∞}^∞ |\hat{f}_k| < \infty$$  
+
+then converges to the true function.  
 
 
 ### **Decaying of Coefficients**  
@@ -30,30 +38,34 @@ Use integration by parts to prove that the coefficients converge. (Example from 
 
 $$
 \begin{aligned}
-f̂ₖ &= \frac{1}{2π} \int^{2π}_{0} f(θ) {e}^{-ikθ} dθ \\
-&=\frac{1}{2π}[ \frac{e^{-ik\theta}}{-ik} - \int^{2π}_{0} f'(θ) {e}^{-ikθ}/(-ik\theta) dθ ] \\
+\hat{f}_k &= \frac{1}{2π} \int^{2π}_{0} f(θ) {e}^{-ikθ} dθ \\
+
+&=\frac{1}{2π}[ \frac{f(\theta) \ e^{-ik\theta}}{-ik} \Big|_0^{2\pi} - \int^{2π}_{0} f'(θ) {e}^{-ikθ}/(-ik\theta) dθ ] \\
+
 &= \cdots \\
+
 &=\frac{(-i)^λ}{2π k^{λ}} \int^{2π}_{0} f^{(λ)}(θ) {e}^{-ikθ} dθ
 \end{aligned}
 $$  
 
-given that $f^{(λ)}$ is uniformly bounded, the convergence follows  
+given that $f^{(λ)}$ is uniformly bounded and the preceeding ones are $2\pi$ periodic, the convergence follows  
 
 $$
-|∑_{k=n}^{\infty} f̂_k {e}^{ikθ}| \leq ∑_{k=n}^{\infty} |f̂_k | \leq C ∑_{k=n}^{\infty} k^{-λ} 
-$$
+|∑_{k=n}^{\infty} \hat{f}_k {e}^{ikθ}| \leq ∑_{k=n}^{\infty} |\hat{f}_k | \leq C ∑_{k=n}^{\infty} k^{-λ} 
+$$  
 
-for some constant $C$.
+for some constant $C$.  
 
-## **Trapezium Rule Approximation**  
+## **Trapezium Rule Approximation**   
 
-### **Goal**  
+### **Goal**   
 
-To approximate Fourier coefficients via Trapezium Rule integration,  
+To approximate Fourier coefficients via Trapezium Rule integration in the interval $[0,2\pi]$,  
 
 $$
 \hat{f}_n^k =\frac{1}{n} \sum_{j=0}^{n-1} f(\theta_j) e^{-ik\theta_j}
 $$  
+
 where $\theta_j = \frac{2\pi j}{n}$.  
 
 ### **Discrete Orthogonality**  
@@ -70,7 +82,7 @@ Using lemma above and expanding the $f(\theta_j)$'s, we get if $𝐟̂$ is absol
 
 $$
 \hat{f}_k^n = ⋯ + \hat{f}_{k-2n} + \hat{f}_{k-n} + \hat{f}_k + \hat{f}_{k+n} + \hat{f}_{k+2n} + ⋯
-$$
+$$  
 
 ### **Aliasing**  
 
@@ -78,7 +90,7 @@ It follows that for all $p ∈ ℤ$
 
 $$
 \hat{f}_k^n = \hat{f}_{k+pn}^n
-$$ 
+$$   
 
 which says the approximation to the $k^{th}$ coefficient using $n$ terms is the same as the approximation to the $(k+pn)^{th}$ term. This is useful in FFT.
 
@@ -88,9 +100,9 @@ We use the matrix times the values of $f$ at each $\theta_j$ to approximate the 
 
 $$
 \hat{f}_k^n = \frac{1}{n}\sum_{j=0}^{n-1} f(\theta_j) e^{-ik\theta_j}
-$$  
+$$    
 
-Let $\omega=exp(i\frac{2\pi}{n})$  
+Let $\omega=\exp(i\frac{2\pi}{n})$  
 
 $$
 \begin{aligned}
@@ -108,6 +120,7 @@ Q_n &:= {1 \over √n} \begin{bmatrix} 1 & 1 & 1&  ⋯ & 1 \\
 \end{bmatrix}
 \end{aligned}
 $$  
+
 Then  
 
 $$
@@ -124,14 +137,16 @@ $$
 - $f_n(θ)$ interpolates $f$ at $θ_j$ for Taylor (same for general case):
 $$
 f_n(θ_j) =\sum_{k=0}^{n-1} \hat{f}_k^n e^{ik\theta_j} =f(θ_j)
-$$
+$$  
 
 ## **Approximation**  
 
-For the general (non-Taylor) case and $n = 2m+1$, we have
+For the general (non-Taylor) case and $n = 2m+1$, we have  
+
 $$
 f_{-m:m}(θ) := ∑_{k=-m}^m \hat{f}_k^n {e}^{ik θ}
-$$
+$$  
+
 converges to $f(θ)$ as $n \rightarrow ∞$. (See PS7 last question)  
 
 
