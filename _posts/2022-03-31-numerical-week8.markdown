@@ -70,7 +70,7 @@ Thus, to prove some function is some orthogonal polynomial $T_n(x)$, it suffices
 $$
 \begin{aligned}
     xp_0(x)&=a_0p_0(x)+b_0p_1(x) \\
-    xp_n(x)&=c_{n-1}(x)+a_np_n(x)+b_np_{n+1}(x)
+    xp_n(x)&=c_{n-1}p_{n-1}(x)+a_np_n(x)+b_np_{n+1}(x)
 \end{aligned}
 $$  
 
