@@ -41,11 +41,13 @@ x = big(10)
 y = (x^x)^x
 ```  
 
-## **Real Numbers in Binary**
+## **Real Numbers in Binary**  
+
 - $(101.011)_2=(101)_2+\frac{0}{2}+\frac{1}{2^2}+\frac{1}{2^3}$
 
 - $(0.333 \cdots)_{10}=\sum(1/4)^k=(0.01010\cdots)_2$
-- using geometric series
+- using geometric series  
+  
 ## **Floating Point Numbers**  
 
 $$
@@ -127,7 +129,8 @@ reinterpret(Float16, i)
 - Note all in binary, up $1.0101 \rightarrow 1.0110$, down and nearest $1.0101 \rightarrow 1.0100$
 
 ### **Arithmetic**
-
+- $x+y$ becomes $fl(x) \oplus fl(y)$, note if only $\oplus$ is used then the numbers need not to be rounded  
+  
 - non-associativity due to underflowing **e.g.** $(2^{-11}+1)+2^{-11}=1+2^{-11}=1$
 
 - Overflowing causes $10^{100}+1=10^{100}$, as not enough mantissa bits are there to reflect the addition, in `Float64` the largest should be $2^{53}-1$ to reflect the plus one.  
@@ -150,7 +153,7 @@ $$
   $|\delta_a|$ is the error
 
 - Relative error $\tilde{x} = x(1+\delta_r)$,
-  then $|\delta_r|$ is the error
+  then $|\delta_r| \leq \frac{\epsilon_m}{2}$ is the error
 e.g.  
 $$
 \begin{aligned}

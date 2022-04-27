@@ -12,7 +12,10 @@ mathjax: true
 
 ## **Motivation**  
 
-Wish to approximate a function more easily using polynomials. Functions like $\frac{1}{25x^2+1}$ cannot be approximated by Taylor inside the unit disk, so we need alternatives.  
+Wish to approximate a function more easily using polynomials. Functions like $\frac{1}{25x^2+1}$ cannot be approximated by Taylor inside the unit disk, so we need alternatives.   
+
+See the blog on [Chebyshev Polynomials](https://francisbach.com/chebyshev-polynomials/) for more.  
+
 
 ## **Definition**  
 
@@ -97,12 +100,12 @@ $$
 
 $$
 \begin{aligned}
-    q_0(x)&=\frac{1}{\sqrt{\pi}} \\
-    q_k(x)&=\sqrt{\frac{2}{\pi}}
+    q_0(x)&:\frac{1}{\sqrt{\pi}} \\
+    q_k(x)&:\sqrt{\frac{2}{\pi}}
 \end{aligned}
 $$  
 
-**Alternative:**  
+**Alternative:**   
 
 $$
 T_n(x)=\cos(n \arccos x)
@@ -154,7 +157,16 @@ $$
 
 $$
 w(x) = \sqrt{1-x^2} \qquad x \in [-1,1]
-$$  
+$$   
+
+**Normalization Constant**  
+
+$$
+\begin{aligned}
+    q_k(x)&:\sqrt{\frac{2}{\pi}}
+\end{aligned}
+$$   
+
 
 **Alternative:**   
 
@@ -265,7 +277,7 @@ $$
 (Rodriguez Formula)   
 
 $$
-H_n(x)=(-1)^n \frac{d^n}{dx^n}exp(-x^2)
+H_n(x)=(-1)^n \frac{d^n}{dx^n}\exp(-x^2)
 $$  
 
 
@@ -311,7 +323,7 @@ x[p_0 |p_1|p_2|\dots]=[a_0p_0+b_0p_1|c_0p_0+a_1p_1+b_1p_2|\dots]\\
 =[p_0 |p_1|p_2|\dots]X
 $$   
 
-When the polynomials are orthonormal then $X=X^T$
+When the polynomials are **orthonormal** then $X=X^T$
 
 
 

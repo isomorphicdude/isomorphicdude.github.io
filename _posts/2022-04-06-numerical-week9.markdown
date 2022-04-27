@@ -160,6 +160,7 @@ $$
 $$
 \int_a^b f(x)w(x) dx \approx Σ_n^{w}[f] = \sum_{j=1}^n w_j f(x_j)
 $$  
+
 where  
 
 $$
@@ -182,11 +183,11 @@ Again require the polynomials to form orthonormal basis, as in the proof $Q_n$ i
 
 ### **Interpolation by Gaussian**  
 
-We can interpolate $f(x)$ at the roots $x_j$ by the following using the orthogonal family in Gaussian. ($f_n(x_j)=f(x_j)$)  
+We can interpolate $f(x)$ at the roots $x_j$ by the following using the orthogonal family in Gaussian. ($f_n(x_j)=f(x_j)$)    
 
 $$
 f_n(x)=\sum_{k=0}^{n-1} c_k^{(n)} q_k(x)
-$$  
+$$    
 
 where   
 
@@ -204,7 +205,7 @@ $$
 
 ### **Exactness of two-times**  
 
-A Gaussian quadrature rule with $n$ roots is **exact for polynomial of** **degree $2n-1$**.   
+A Gaussian quadrature rule with $n$ roots is **exact for polynomial $p(x)$ of** **degree $2n-1$**.   
 
 $$
 \int_a^b p(x)w(x) dx = Σ_n^{w}[p]
