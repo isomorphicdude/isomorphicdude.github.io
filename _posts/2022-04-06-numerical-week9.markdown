@@ -42,7 +42,7 @@ V \begin{bmatrix}
     \vdots \\
     f_{n}
 \end{bmatrix}
-$$
+$$  
 
 where   
 
@@ -51,7 +51,7 @@ V := \begin{bmatrix} 1 & x_1 & ⋯ & x_1^{n-1} \\
                     ⋮ & ⋮ & ⋱ & ⋮ \\
                     1 & x_n & ⋯ & x_n^{n-1}
                     \end{bmatrix}
-$$  
+$$   
 
 
 ### **Uniqueness**   
@@ -91,7 +91,7 @@ Defined w.r.t. a set of points $\mathbf{x}=[x_1,...,x_n]$
 
 $$
 \int_a^b f(x)w(x) dx \approx Σ_n^{w,𝐱}[f] := ∑_{j=1}^n w_j f(x_j)
-$$  
+$$   
 
 where  
 
@@ -146,7 +146,24 @@ X_n := \begin{bmatrix} a_0 & b_0 \\
                          b_0 & ⋱ & ⋱ \\
                          & ⋱ & a_{n-2} & b_{n-2} \\
                          && b_{n-2} & a_{n-1} \end{bmatrix} ∈ ℝ^{n × n}
-$$   
+$$     
+
+In particular,  
+
+$$
+X_n \begin{bmatrix} q_0(x_j) \\ ⋮ \\ q_{n-1}(x_j) \end{bmatrix} =
+\begin{bmatrix} a_0 q_0(x_j) + b_0 q_1(x_j) \\
+ b_0 q_0(x_j) + a_1 q_1(x_j) + b_1 q_2(x_j) \\
+⋮ \\
+b_{n-3} q_{n-3}(x_j) + a_{n-2} q_{n-2}(x_j) + b_{n-2} q_{n-1}(x_j) \\
+b_{n-2} q_{n-2}(x_j) + a_{n-1} q_{n-1}(x_j) + b_{n-1} q_n(x_j)
+\end{bmatrix} = x_j \begin{bmatrix} q_0(x_j) \\
+ q_1(x_j) \\
+⋮ \\
+q_{n-1}(x_j)
+\end{bmatrix}
+$$  
+
 
 
 ## **Gaussian Quadratures**  
