@@ -92,7 +92,7 @@ $$
 \hat{f}_k^n = \hat{f}_{k+pn}^n
 $$   
 
-which says the approximation to the $k^{th}$ coefficient using $n$ terms is the same as the approximation to the $(k+pn)^{th}$ term. This is useful in FFT.
+which says the approximation to the $k^{th}$ coefficient using $n$ terms is the same as the approximation to the $(k+pn)^{th}$ term. This is useful in FFT.  
 
 
 ## **Discrete Fourier Transform**  
