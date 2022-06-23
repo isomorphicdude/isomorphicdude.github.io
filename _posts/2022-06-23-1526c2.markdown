@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Codeforces 1526C2"
+permalink: /2022-06-23/
+usemathjax: true
+categories: Computer-Science
+math: true
+mathjax: true
+---  
+
+
