@@ -31,7 +31,7 @@ Clearly, $\forall p_i > y_j$, with $i \leq M$, $p_i$ must be contained in the se
 The following implementation is written in `Java`.    
 
 
-```Java  
+```java  
 public class Main {
     public static void main(String[] args){
         // codeforces 1526c2
