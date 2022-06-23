@@ -8,4 +8,56 @@ math: true
 mathjax: true
 ---  
 
+# Taking Potions   
+
+The idea is to use a minimum priority queue as follows:  
+
+- Go from left to right, take all nonnegative potions
+
+- If a negative potion is encountered, take it if it does not kill you and store it in a minimum priority queue; 
+
+- Else, store it in the minimum priority queue, sort the queue, get rid of the most negative potion stored, and restore health by ridding that potion
+
+To justify the idea, denote the health at position $j$ with $k$ potions taken as $H_{j,k}$  and the potion at position $j$ as $p_j$. We make an (almost trivial) observation:  
+
+- For two different solutions $S,\ S'$, denote their repsective health as $H_{M,k}$ and $H_{M,k}'$, if $H_{M,k} \geq H_{M,k}'$, then $S$ will give a greater number of potions taken.  
+
+Now to show that the priority queue approach, denoted by $S$, is optimal. Let $S'$ be a different solution scheme. We denote $x_1, x_2, x_3, \cdots, x_k$ as the potions taken in chronological order before position $M$ for $S$ and similarly $y_1,y_2, y_3, \cdots, y_k$ for $S'$.   
+
+Let $j$ be the first position those sequences differ.  
+
+Clearly, $\forall p_i > y_j$, with $i \leq M$, $p_i$ must be contained in the sequence, otherwise, we can swap to obtain a sequence that leads to greater total health.  Note this is also true for any $j' > j$. Thus, we must have constructed the subsequence starting from $y_j$ containing all the elements in the priority queue starting from $x_j$.  
+
+The following implementation is written in `Java`.    
+
+
+```Java  
+public class Main {
+    public static void main(String[] args){
+        // codeforces 1526c2
+        MyScanner sc = new MyScanner(); //I/O
+        int n = sc.nextInt();
+        long hp = 0;
+        int cnt = 0;
+        PriorityQueue<Long> PQ = new PriorityQueue<Long>();
+        for (int i = 0; i<n; ++i){
+            long p = sc.nextLong();
+            hp+=p;
+            if(p>=0){
+                cnt+=1;
+            }else{
+                PQ.add(p);
+                cnt++;
+                if(hp<0){
+                    long x = PQ.poll();
+                    hp+=Math.abs(x);
+                    cnt--;
+                }
+            }
+        }
+
+        System.out.println(cnt);
+    }
+```
+
 
