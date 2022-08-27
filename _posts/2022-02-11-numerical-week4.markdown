@@ -9,7 +9,7 @@ mathjax: true
 ---
 
 
-# **Week 4 Decomposition and Least Sqs.**
+# **Decomposition and Least Sqs.**
 
 Importance of decomposition due to the ease of invertibility, hence quicker solution to linear systems.
 
