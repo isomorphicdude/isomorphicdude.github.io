@@ -30,9 +30,11 @@ We outline the goals and define some notations.
 
 - We would like to model the distribution $P_{\theta}$ of some data $X \sim P_{\theta}$
 
-- We have a latent variable $Z$
+- We have a latent variable $Z$  
 
-- $P_{\theta} (X|Z)$ is the conditional distribution of the data given the latent variable with $\theta$ being a parameter; we can view this conditional distribution as the generation process
+- Conditional distribution depending on $Z$ given by $P_{\theta}(X \mid Z)$ with $\theta$ being a parameter    
+  
+- We can view this conditional distribution as the generation process
 
 - Thus $\theta$ is called the *generative* model parameter  
 
@@ -40,7 +42,7 @@ We outline the goals and define some notations.
 
 - $\phi$ is called the *variational* parameter  
 
-- $Q_{\phi}(Z|X)$ can be viewed as an encoding process [[1]](#1)  
+- $Q_{\phi}(Z \mid X)$ can be viewed as an encoding process [[1]](#1)  
 
 - Both $P$ and $Q$ can be seen as some neural networks  
 
@@ -96,7 +98,7 @@ $$
     \mathcal{\hat{L}}(\theta, \phi; x)= \frac{1}{L} \sum_{j=1}^L -\log p_\theta(x,z^{(j)})+ \log q_\phi(z^{(j)}|x)
 $$  
 
-since $\frac{p_\theta(x,z^{(j)})}{p_{\theta}(z^{(j)})}=p_{\theta}(x|z)$  
+since $\frac{p_\theta(x,z^{(j)})}{p_{\theta}(z^{(j)})}=p_{\theta}(x \mid z)$  
 
 We need to use a **reparametrization trick** to use gradient descent, as $z$ is sampled from a distribution. Namely, we find a continous invertible transformation $g_{\phi}(\epsilon^{(j)},x)$ mapping from a variable sampled from a *fixed* distribution to $z^{(j)}$, thus we arrive at the following using change of variables  
 
@@ -106,7 +108,7 @@ $$
 
 An example is the shift and scale of the normal distribution $z = \sigma \epsilon + \mu$.  
 
-If both $P,Q$ are normal distributions, then their KL divergence can be computed analytically using mean and variance, in this case, we only need to sample for the first term in the loss  
+If both $P,Q$ are normal distributions, then their KL-divergence can be computed analytically using mean and variance, in this case, we only need to sample for the first term in the loss  
 
 $$
 \hat{\mathcal{L}}^B(\theta,\phi;x) := \frac{1}{L} \sum_{j=1}^L -\log p_\theta(x\mid z^{(j)}) + D_{KL}(Q_\phi(z\mid x) || P_\theta(z))
@@ -121,10 +123,11 @@ The algorithm inputs are the encoder and decoder networks $Q_\phi(z \mid x)$, $P
 **WHILE** not converged:    
 
 **DO** 
-> &nbsp; Sample minibatch $\mathcal{D}_m$ of $M$ data examples<br>  
-> &nbsp; Sample $M\times L$ noise variables $\epsilon^{(i, j)}$ for each $x_i\in\mathcal{D}_m$ and $1\leq j \leq L$<br>  
-> &nbsp; Compute gradient $\frac{1}{M}\sum_{x_i\in\mathcal{D}_m}\nabla_{\phi, \theta} \hat{\mathcal{L}}(\theta,\phi;x_i)$, where $\hat{\mathcal{L}}$ can be obtained from sampling or analytical computation<br>  
-> &nbsp; Update parameters $\theta$ and $\phi$ using SGD
+- &nbsp; Sample minibatch $\mathcal{D}_m$ of $M$ data examples  
+- &nbsp; Sample $M\times L$ noise variables $\epsilon^{(i, j)}$ for each $x_i\in\mathcal{D}_m$ and $1\leq j \leq L$
+- &nbsp; Compute gradient 
+- $$\frac{1}{M}\sum_{x_i \in \mathcal{D}_m}\nabla_{\phi, \theta} \mathcal{\hat{L}}(\theta,\phi;x_i)$$   
+- &nbsp; Update parameters $\theta$ and $\phi$ using SGD
 
 
 
