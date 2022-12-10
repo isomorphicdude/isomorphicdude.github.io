@@ -1,3 +1,3 @@
-# isomorphicdude.github.io
+# Welcome to the Source for my GitHub Pages  
 
-Feel free to leave a comment:)
+Thanks to the themes made by [@zivong](https://github.com/zivong), I was able to make a blog of my own (even though I know nothing about front-end web development).
