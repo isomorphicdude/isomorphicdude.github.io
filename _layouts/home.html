@@ -2,27 +2,21 @@
 layout: default
 ---
 
-<form action="/search.html" method="get">
-  <label for="search-box">Search</label>
-  <input type="text" id="search-box" name="query">
-  <input type="submit" value="search">
-</form>
-
-{{ content }}
-
 <div class="posts">
   {% assign posts = site.posts %}
   {% if paginator %}
     {% assign posts = paginator.posts %}
   {% endif %}
   {% for post in posts %}
-    <div class="post-entry">
-      <time datetime="{{ post.date | date_to_xmlschema }}" class="post-meta">{{ post.date | date_to_string }}</time>
+    <div class="post">
       <h2 class="post-title">
         <a href="{{ post.url | relative_url }}">
           {{ post.title }}
         </a>
       </h2>
+
+      <time datetime="{{ post.date | date_to_xmlschema }}" class="post-meta">{{ post.date | date_to_string }}</time>
+
       <p class="post-excerpt">
         {% if post.description %}
           {{ post.description | strip_html }}
@@ -35,16 +29,16 @@ layout: default
 </div>
 
 {% if paginator %}
-  <div class="pagination">
-    {% if paginator.previous_page %}
-      <a class="pagination-item newer" href="{{ paginator.previous_page_path | relative_url }}"><i class="fas fa-chevron-left"></i></a>
-    {% else %}
-      <span class="pagination-item newer"><i class="fas fa-chevron-left"></i></span>
-    {% endif %}
-    {% if paginator.next_page %}
-      <a class="pagination-item older" href="{{ paginator.next_page_path | relative_url }}"><i class="fas fa-chevron-right"></i></a>
-    {% else %}
-      <span class="pagination-item older"><i class="fas fa-chevron-right"></i></span>
-    {% endif %}
-  </div>
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a class="pagination-item newer" href="{{ paginator.previous_page_path | relative_url }}"><i class="fas fa-chevron-left"></i></a>
+  {% else %}
+    <span class="pagination-item newer"><i class="fas fa-chevron-left"></i></span>
+  {% endif %}
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ paginator.next_page_path | relative_url }}"><i class="fas fa-chevron-right"></i></a>
+  {% else %}
+    <span class="pagination-item older"><i class="fas fa-chevron-right"></i></span>
+  {% endif %}
+</div>
 {% endif %}
