@@ -1,0 +1,26 @@
+/* styles.css */
+
+/* Define the CSS variables for light and dark mode border colors */
+:root {
+    --box-border-light: black; /* Border color for light mode */
+    --box-border-dark: white; /* Border color for dark mode */
+  }
+  
+  /* Define the class for the text box with transparent background and adaptive border color */
+  .transparent-box {
+    background-color: transparent;
+    color:var(--box-border-light);
+    border: solid 1px var(--box-border-light); /* Default border color for light mode */
+    border-left-width: 6px;
+    border-radius: 4px;
+    padding: 0.7em;
+  }
+  
+  /* Media query for dark mode */
+  @media (prefers-color-scheme: dark) {
+    .transparent-box {
+      border-color: var(--box-border-dark); /* Use the dark border color for dark mode */
+      color:var(--box-border-dark);
+    }
+  }
+  
