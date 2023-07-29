@@ -1,0 +1,260 @@
+---
+layout: post
+title: "Gaussian Variables and Gaussian Processes"
+permalink: /2023-07-14/
+usemathjax: true
+categories: Probability-and-Statistics
+math: true
+mathjax: true
+---   
+
+> This is the first of possibly a series of blog posts recording my study of the book *Brownian Motion, Martingales, and Stochastic Calculus* by Jean-François Le Gall.
+A useful reference is this [solution manual](https://jupiter.math.nycu.edu.tw/~sheu/Solution.pdf) by Te-Chun Wang.  
+
+
+# Gaussian Random Variables   
+
+In this chapter, we will be working with the probability space $(\Omega, \mathcal{F}, \mathbb{P})$.  
+
+A **standard Gaussian random variable** is a random variable $X$ with density function   
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}
+$$  
+
+for all $x \in \mathbb{R}$.
+
+Probably for the sake of convenience, a **Gaussian random variable** is defined to be a random variable $Y$ with any of the following equivalent properties:  
+
+- $Y=\sigma X + m$ where $X$ is a standard Gaussian random variable, $\sigma > 0$ and $m \in \mathbb{R}$, or
+
+- $Y$ has density function $f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-m)^2/2\sigma^2}$ for all $x \in \mathbb{R}$  
+
+- $Y$ has characteristic function $\phi(t) = \mathbb{E}[e^{itY}] = \exp({itm - \sigma^2t^2/2})$ for all $t \in \mathbb{R}$
+
+>  The characteristic function is well-defined by first considering the integral when $\mathbb{E}[e^{\lambda Y}]$ for $\lambda \in  \mathbb{R}$, and then using analytic continuation ([Identity theorem](https://en.wikipedia.org/wiki/Identity_theorem))
+
+## Properties of Gaussian Random Variables
+
+- If $X$ and $Y$ are independent Gaussian random variables, then $X+Y$ is also a Gaussian random variable with $\mu=\mu_X+\mu_Y$ and $\sigma^2=\sigma_X^2+\sigma_Y^2$.  
+
+- If $X,Y$ are uncorrelated Gaussian random variables, then $X$ and $Y$ are independent.  
+
+- If $(X)_n$ is a sequence of Gaussian random variables $\mathcal{N}(m_n, \sigma_n^2)$ converging in $L^2$ to $X$, then:  
+   - $X$ is a Gaussian random variable $\mathcal{N}(m, \sigma^2)$, $m=\lim m_n$ and $\sigma^2=\lim \sigma_n^2$ 
+   - The convergence also holds in all $L^p$ spaces for $p \in [1, \infty)$
+
+The proof of the first result is straightforward. For part 1 of the second result, we use the convergence of characteristic functions.   
+Part 2 follows from the uniform integrability of $Y_n=\vert X_n-X\vert ^p$, since we have $\sup_n \mathbb{E}[\vert X_n-X\vert ^q]<\infty$, which follows from $\sup_n \mathbb{E}[\vert X_n\vert ^q]=\sup_n \mathbb{E}[\vert \sigma_n X_n + m_n\vert ^q]<\infty$ and the fact that $X_n$ converges in $L^2$ to $X$.  
+
+### Quick reminder of uniform integrability  
+
+A sequence of random variables $(X_n)$ is **uniformly integrable** if 
+
+$$
+\sup_n \mathbb{E}[\vert X_n\vert 1_{\vert X_n\vert \geq a}]=0
+$$
+
+when $a \to \infty$.   
+
+**Theorem** in (Grimmett and Stirzaker's): If a sequence of random variables $(X_n)$ that converges in probability to $X$, then TFAE:  
+
+- $(X_n)$ is uniformly integrable.  
+
+- ($L^1$ convergence) $\mathbb{E}[\vert X_n\vert ]$ is bounded for all $n$, $\mathbb{E}[\vert X\vert ]<\infty$ and $\mathbb{E}[\vert X_n-X\vert ]\to 0$ as $n \to \infty$.  
+  
+-  $\mathbb{E}[\vert X_n\vert ]$ is bounded for all $n$ and $\mathbb{E}[\vert X_n\vert ] \to \mathbb{E}[\vert X\vert ]$ as $n \to \infty$.  
+
+This is a somewhat probabilistic version of Vitali's convergence theorem.  
+
+# Gaussian Vectors   
+
+We now work with a more abstract metric space $(E, d)$. (e.g. $E=\mathbb{R}^d$ with the Euclidean metric). And unless specified, we will be working with centered Gaussian vectors, which have mean $0$.  
+
+  
+A **Gaussian vector** is a random variable $X$ with values in $E$, satisfying: for all $u \in E$, $\langle u, X \rangle$ is a Gaussian random variable.   
+
+
+> **Example**: In $\mathbb{R}^d$, a Gaussian vector is a random variable $(X_1, \dots, X_d)$ with $X_i$ being independent Gaussian random variables, since the sum of independent Gaussian random variables is a Gaussian random variable.   
+
+
+## Properties of Gaussian Vectors  
+
+- The **mean** is characterized by $m_X \in E$, s.t. for all $u \in E$.   
+
+$$
+\mathbb{E}[\langle u, X \rangle] = \langle u, m_X \rangle
+$$
+
+- The **variance** is characterized by $q_X(u)$ a nonnegative quadratic form on $E$, s.t. for all $u \in E$.   
+
+$$
+\mathrm{var}(\langle u, X \rangle) = q_X(u)
+$$ 
+
+> An explicit form of $q_X(u)$ can be worked out by considering the orthonormal basis on $E$. We can obtain for $u=\sum u_j e_j$,   
+
+$$
+q_X(u) = \sum_{j, k=1}^d u_j u_k \ \mathrm{cov}(X_j, X_k)
+$$     
+
+> where $\mathrm{cov}(X_j, X_k)$ is the covariance of $X_j$ and $X_k$  
+> Thus, a unique symmetric endomorphism $\gamma_X$ on $E$ can be defined by  
+> $$q_X(u) = \langle u, \gamma_X(u) \rangle$$
+> In the usual $\mathbb{R}^d$ case, $\gamma_X$ is the covariance matrix, which is semi-positive definite.  
+
+- The random variables $(X_1, \ldots, X_d)$ are independent if and only if the covariance matrix is diagonal or equivalently if $q_X$ is diagonal in the orthogonal basis.  
+
+The following theorem shows the existence of a Gaussian vector for any nonnegative symmetric endomorphism on $E$ 
+> Namely given a suitable matrix, we can use it as a covariance matrix to define a Gaussian vector, this is more interesting in the Gaussian process case 
+
+<div class="transparent-box">
+   <b>Theorem</b>: Let 
+   $\gamma$ 
+   be a nonnegative symmetric endomorphism on 
+   $E$
+   . Then there exists a Gaussian vector 
+   $X$
+    with 
+    $\gamma_X=\gamma$. 
+</div>  
+ 
+
+The proof is constructive. We first find a basis in which $\gamma$ is diagonal, and then construct a Gaussian vector with the diagonal covariance matrix with variance being eigenvalues of $\gamma$.  
+
+Like a Gaussian random variable, a Gaussian vector is uniquely determined by its mean and covariance matrix.  
+
+
+<div class="transparent-box">
+   <b>Distribution of Gaussian Vectors 1</b>: Let 
+   $X$
+    be a Gaussian vector with mean 
+    $m$
+     and covariance matrix 
+     $\gamma_X$. Choose 
+     $(e_1,\ldots, e_d)$ 
+     to be a basis in which
+     $\gamma_X$ is diagonal, where the eigenvalues are  
+     $$\lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_r >0 = \lambda_{r+1} = \ldots = \lambda_d$$  
+     with 
+     $r$
+      being the rank of 
+      $\gamma_X$. 
+      Then 
+      $X$
+       has the form 
+       $$X = \sum_{j=1}^r Y_j e_j$$
+       where 
+       $(Y_1,\ldots, Y_r)$
+       are independent standard Gaussian random variables with variance
+       $\lambda_j$.
+</div>   
+
+We can now characterize the distribution of a Gaussian vector.  
+<div class="transparent-box">
+   <b>Distribution of Gaussian Vectors 2</b>: Using the same notation as above. If 
+$P_X$ denotes the distiribution of 
+$X$,
+then the topological support of it is the vector space spanned by 
+$e_1,\ldots, e_r$,
+$P_X$ is absolutely continuous with respect to the Lebesgue measure if and only if 
+$r=d$, which gives the density
+$$
+p_X(x) = \frac{1}{(2\pi)^{d/2} \sqrt{\det \gamma_X}} \exp\left(-\frac{1}{2} \langle x, \gamma_X^{-1}(x) \rangle\right)
+$$ 
+</div>   
+
+> The if and only if conditions holds as in $d$ dimensions, the Lebesgue measure of a space of smaller dimension is $0$. The density is shown by considering $\mathbb{E}[g(X)]$ for an arbitrary continuous bounded function $g$ (show by monotone convergence theorem that for any indicator $\mathbf{1}_A$, there is $g_n \uparrow \mathbf{1}_A$).
+
+
+# Gaussian Processes   
+
+> Similarly, we consider only centered Gaussian processes.  
+
+Gaussian processes can be thought as an infinite collection of Gaussian random variables, in which case, the tools and terminologies from functional analysis are useful.  
+
+We first define a **Gaussian space** as a closed, linear, subspace of the Hilbert space $L^2(\Omega, \mathcal{F}, \mathbb{P})$, which contains only centered Gaussian random variables.  
+
+> This means we are always assuming finite variance.  
+
+A general **random process** with values in $(E, \mathcal{E})$ is a family of random variables $(X_t)_{t \in T}$ with values in $E$, where $T$ is an arbitrary index set.  
+
+Then with $E=\mathbb{R}$, a **Gaussian process** is a random process $(X_t)_{t \in T}$, s.t. for all $t_1, \ldots, t_n \in T$, their linear combination is a Gaussian random variable.   
+
+> The closed linear subspace spanned by $X_{t_1}, \ldots, X_{t_n}$ is a Gaussian space, which is called the **Gaussian space** generated by $(X_t)_{t \in T}$.  The closedness follows from the $L^2$ limit of Gaussian random variables being Gaussian.   
+
+## Properties of Gaussian Processes  
+
+
+Furthermore, due to the independence properties of Gaussian random variables, we can work with them in a Hilbert space setting.  
+
+
+<div class="transparent-box">
+   <b>Theorem</b>: If 
+$(H)_{i\in I}$ is a collection of linear subspaces of a Gaussian space, 
+they are pairwise orthogonal in
+$L^2$ if and only if the sigma fields
+$\sigma((H)_i)$ are independent.  
+</div>
+
+> Here the notation $\sigma(H_i)$ means the sigma field generated by random variables in the collection $H_i$ *i.e.* the smallest sigma field that makes all the random variables in $H_i$ measurable.  
+
+The proof is an application of the Monotone Class Theorem.  
+
+This orthogonality and independence property enables us to compute conditional expectation as an orthogonal projection as the following theorems show:  
+
+<div class="transparent-box">
+    <b> Conditional Expectation </b>: Let 
+    $H$ be a Gaussian space and 
+    $K$ be a closed linear subspace of
+    $H$. Denote 
+    $p_K$ as the orthogonal projection onto
+    $K$ in the Hilbert space
+    $L^2(\Omega, \mathcal{F}, \mathbb{P})$.
+    Then for any $X\in H$,
+    $$
+    \mathbb{E}[X \mid K] = p_K(X)
+    $$
+</div>
+
+> A consequence of the theorem is that the best approximation to a Gaussian random variable $X_3$ in a closed subspace spanned by $(X_1, X_2, X_3)$ is the **linear combination** of $X_1$ and $X_2$.  
+> This will be useful in the context of Kalmann filtering.  
+
+
+The conditional distribution is also Gaussian. 
+
+<div class="transparent-box">
+    <b> Conditional Distribution </b>: 
+    Let 
+    $\sigma^2 = \mathbb{E}[(X-p_K(X))^2]$.
+    Then the conditional distribution
+    $P[X\in A\mid \sigma(K)]$ is given by
+    $$
+    P[X\in A\mid \sigma(K)] = \frac{1}{\sqrt{2\pi \sigma^2}} \int_A dy \exp\left(-\frac{(y-p_K(X))^2}{2\sigma^2}\right)
+    $$
+</div>
+
+The following theorem solves the problem of finding a Gaussian process with a given covariance function.  
+
+<div class="transparent-box">
+    <b> Existence of Gaussian Process </b>:
+
+For any symmetric function of positive type $\Gamma$, there exists on an appropriate probability space a Gaussian process $(X_t)_{t\in T}$ with covariance function $\Gamma$.
+
+</div>
+
+> Here $\Gamma(s, t)$ is called symmetric, if $\Gamma(s,t) = \Gamma(t,s)$ for all $s,t \in T$. It is of positive type in the sense that if $c$ is real on $T$ with finite support, then
+$$
+\sum_{s,t \in T} c(s) c(t) \Gamma(s,t) \geq 0
+$$  
+
+
+
+
+
+
+
+
+
+
+
