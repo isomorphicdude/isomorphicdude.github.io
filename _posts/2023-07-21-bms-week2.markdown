@@ -1,0 +1,244 @@
+---
+layout: post
+title: "Brownian Motion 1"
+permalink: /2023-07-21/
+usemathjax: true
+categories: Probability-and-Statistics
+math: true
+mathjax: true
+---   
+
+> Second post in the series. Mainly about the construction of Brownian motion and its properties. I have moved the construction of Gaussian white noise to this post. 
+
+
+# Gaussian White Noise  
+
+A **Gaussan white noise** with *intensity* $\mu$ is an isometry:
+
+$$
+G: L^2(E, \mathcal{E}, \mu) \to K
+$$
+
+where $K$ is a centered Gaussian space.  
+
+The isometry allows us to compute variance and covariance easily:
+
+$$
+\mathbb{E}[G(f)^2] = \int f^2 d\mu
+$$
+
+for $f \in L^2$ and $G(f)$ a Gaussian random variable.  
+
+> Note covariance can be computed by inner product, since both spaces are Hilbert spaces.  
+
+<div class="transparent-box">
+   <b>Existence of Gaussian white noise</b>:
+   If $\mu$ is a $\sigma$-finite measure on $(E, \mathcal{E})$, then there exists a Gaussian white noise with intensity $\mu$ on some appropriate probability space $(\Omega, \mathcal{F}, P)$.
+</div>   
+
+The proof follows from the existence of a Gaussian process given the covariance function (in the previous post). It suffices to set the covariance function $\Gamma(f, g) = \langle f, g \rangle_{L^2(\mu)}$ to construct a Gaussian process $(X_f)_{f\in L^2}$ and then we set $G(f)=X_f$.  
+
+When $L^2$ is separable, we can explicitly take an orthonormal basis $(\varphi_n)$ and set
+$$
+G(f) = \sum_{n=1}^\infty \xi_n \langle f, \varphi_n \rangle_{L^2(\mu)}
+$$
+
+> The Haar system is used in Levy's construction of Brownian motion.  
+
+The following is useful when discussing the variation of Brownian motion.
+> And continuous local martingales in general, which is discussed in chapter 4.
+
+<div class="transparent-box">
+   <b>(Lemma) Quadratic variation</b>:
+   Let $A$ be a set with finite measure and a sequence of partitions indexed by $n$,  
+   $$
+   A=A_1^n \cup \cdots A_{k_n}^n
+   $$
+   whose mesh tends to zero (i.e. $\lim_{n\to \infty} \sup_{1\leq i \leq k_n} \mu (A_i^n) = 0$).  
+   Then  
+   $$
+   \lim_{n\to \infty} \sum_{i=1}^{k_n} G(\mathbf{1}_{A_i^n})^2 = \mu(A)
+   $$
+   where the convergence is in $L^2$.  
+</div>   
+
+The proof is to write $\mathbb{E}[\left(\sum G(A_j)^2 - \mu(A) \right)]=var(\sum G(A_j)^2)$ and uses $var(X^2) = \mathbb{E}[X^4] - \mathbb{E}[X^2]^2=3\sigma^4 - \sigma^4 = 2\sigma^4$ for $X\sim N(0, \sigma^2)$.   
+
+# Pre-Brownian Motion  
+
+We first construct the pre-Brownian motion using Gaussian white noise, which has most of the properties of Brownian motion except for the continuity.  
+
+Let $G$ be a Gaussian white nosie on $(\mathbb{R}\_{+}, \mathcal{B}(\mathbb{R}\_{+}), \lambda)$, where $\lambda$ is the Lebesgue measure, then we define the **pre-Brownian motion** as the process $(B_t)\_{t\geq 0}$ with  
+
+$$
+B_t = G(\mathbf{1}_{[0, t]})
+$$
+
+From isometry, it is immediate that the covariance $\mathbb{E}[B_sB_t] = \min(s, t)$.  
+
+## Equivalent characterization
+
+Let $(X_t)_{t\geq 0}$ be a real-valued random process. The following are equivalent:  
+
+- $(X_t)_{t\geq 0}$ is a pre-Brownian motion.
+
+- $(X_t)_{t\geq 0}$ is a centered Gaussian process with covariance $\mathbb{E}[X_sX_t] = \min(s, t)$.  
+
+- (Independent increments) $X_0=0$ almost surely. For any $0=t_0 < t_1 < \cdots < t_n$, the random variables $X_{t_0}, X_{t_1}-X_{t_0}, \cdots, X_{t_n}-X_{t_{n-1}}$ are independent and follows $\mathcal{N}(0, t_i-t_{i-1})$ distribution.  
+
+- (Memoryless) $X_0=0$ almost surely and for every $0 \leq s < t$, $X_t-X_s$ is independent of $\sigma(X_r, 0\leq r \leq s)$ and distributed as $\mathcal{N}(0, t-s)$.  
+
+To go from independent increments to the definition by white noise, we can construct from a step function  
+
+$$f = \sum \lambda_i \mathbf{1}_{(t_{i-1}, t_i]}$$ 
+
+and set $G(f)=\sum_{i=1}^n \lambda_i (X_{t_i}-X_{t_{i-1}})$, we can verify this is an isometry on the space of step functions and then use approximation to extend to $L^2$.  
+
+It follows that $G$ is determined by $B$ and this motivates the definition of a **Wiener integral**.  
+
+$$
+f \mapsto G(f\mathbf{1}_{[0, t]}) = \int_0^t f(s) dB_s
+$$
+
+
+
+> So to show a process is a Brownian motion, we can show it is a pre-Brownian motion and has continuous sample paths. Even simpler, we can show it's a centered Gaussian process with the covariance function specified and continuous sample paths.  
+
+<div class="transparent-box">
+   <b>Finite dimensional distribution</b>:
+   A random process is a pre-Brownian motion if and only if for every $0=t_0 < t_1 < \cdots < t_n$, the vector $(B_{t_1}, \ldots, B_{t_n})$ has the density:
+   $$
+   p(x_1, \ldots, x_n) = \frac{1}{(2\pi)^{n/2}}\sqrt{t_1(t_2-t_1)\cdots (t_n-t_{n-1})} \exp \left( -\frac{1}{2} \sum_{i=1}^n \frac{(x_i-x_{i-1})^2}{t_i-t_{i-1}} \right)
+   $$
+</div>   
+
+### Transformation of pre-Brownian motion  
+
+- (Scaling) For any $c>0$, $B^c_t := cB_{t/c^2}$ is a pre-Brownian motion.
+
+- (Symmetry) $-B_t$ is a pre-Brownian motion.
+
+- (Simple Markov) For any $s\geq 0$, $B_t^{(s)}=B_{s+t}-B_s$ is a pre-Brownian motion. (indexed by $t$)
+
+- (Time inversion) The process $W_t$ defined by $W_0=0$ and $W_t = tB_{1/t}$ for $t>0$ is a pre-Brownian motion.
+
+- (Time reversal) The process $B_t':=B_1 - B_{1-t}$ is a pre-Brownian motion.  
+
+
+# Continuous Sample Paths  
+
+By **sample paths** of a stochastic process, we mean the collection of mappings:
+$$
+T \ni t \mapsto X_t(\omega) \in \mathbb{R}
+$$
+The collection is indexed by $\omega \in \Omega$.  
+
+
+### Modification and indistinguishability  
+
+Let $(X_t)\_{t\in T}$ and $(\bar{X}_t)\_{t \in T}$ be two stochastic processes. We say that 
+$(\bar{X}_t)\_{t \in T}$ is a **modification** of $(X_t)\_{t\in T}$ if for every $t\geq 0$  
+
+<!-- double dollar sign is working for subscript -->
+<!-- but not single dollar sign -->
+
+$$
+\mathbb{P}(X_t = \bar{X}_t)=1
+$$
+
+We say $(\bar{X}\_{t})_{t\in T}$ is **indistinguishable** from $(X_t)\_{t\in T}$ if for every $t\geq 0$ if there exists a negligible set $N$ such that:
+
+$$
+\forall \omega \in \Omega \setminus N, \forall t \in T, \quad X_{t}(\omega) = \bar{X}_{t}(\omega)
+$$ 
+
+> Informally, this is $P(X_t = \bar{X}\_{t}, \forall t\in T)=1$ (informally as this might not be a measurable set).
+
+**Example:**  
+
+Let $X_t$ be a stochastic process s.t.   
+
+$$
+X(t)(\omega) = \begin{cases}
+1 & t=\omega \\
+0 & t \neq \omega
+\end{cases}
+$$  
+
+Then $X_t$ is a modification of $0$ but not indistinguishable from $0$.  
+
+<div class="transparent-box">
+   <b>Remark</b>:
+   If $(X_t)_{t\in T}$ and $(\bar{X}_t)_{t\in T}$ are indistinguishable, then they are modifications of each other.
+</div>
+
+
+In fact, the converse of the remark above is also true under some conditions. 
+
+<div class="transparent-box">
+   <b>Proposition</b>:
+   Fix an interval $I \subset \mathbb{R}$. If $(X_t)_{t\in T}$ and $(\bar{X}_t)_{t\in T}$ are modifications of each other and both processes right/left continuous, then they are indistinguishable.
+</div>  
+
+A proof can be found at [this answer](https://math.stackexchange.com/questions/315803/a-question-about-the-proof-that-right-continuous-modifications-are-indistinguish).   
+
+A process $X$ is said to be **Hölder continuous** with exponent $\alpha$ if for every $\omega \in \Omega$, there exists finite constant $C\_{\alpha}(\omega)$ such that for all $s, t \in I$ a bounded interval,   
+
+$$ 
+d(X_s(\omega), X_t(\omega)) \leq C_{\alpha}(\omega) |t-s|^{\alpha}
+$$ 
+
+where $d$ is a metric on $(E, d)$.  
+
+Now we present the main tool for constructing a continuous modification of a stochastic process.  
+
+<div class="transparent-box">
+   <b>Kolmogorov's lemma</b>:  
+   Let $X = (X_{t})_{t\in I}$ be stochastic process indexed by a bounded interval $I$ and taking values in a complete metric space $(E, d)$.   
+
+   Assume that there exists three reals $q, \varepsilon, \alpha$ such that for all $s, t \in I$,  
+
+   $$
+   \mathbb{E}[d(X_s, X_t)^q] \leq C|t-s|^{1+\varepsilon}
+   $$  
+
+   Then $X$ has a modification which is Hölder continuous with exponent $\alpha$ for every $\alpha \in (0, \varepsilon/q)$.  
+
+   In particular, this modification is unique up to indistinguishability as we have remarked above.
+</div>
+   
+The proof invovles first using a Markov inequality to get a bound on $P(d(X\_{s}, X\_{t}) \geq a)\leq Ca^{-q}\vert t-s\vert^{1+\varepsilon}$ and divide the bounded interval into small pieces of length $2^{-n}$. Then choosing $a=2^{-n\alpha}$ and using the Borel-Cantelli lemma to show that $\limsup \bigcup_{i=1}^{2^n} \{d(X\_{(i-1)2^{-n}}, X\_{i2^{-n}}) \geq 2^{-n\alpha}\}$ has probability zero. 
+
+Then another technical lemma from analysis is used.  Let $D$ be all the reals in $I$ that can be written as a $i2^{-n}$ for some $i, n \in \mathbb{N}$, which is dense.  
+
+**Lemma**: Assume $\exists \alpha>0, K<\infty$, s.t. $\forall n\geq 1$, $\forall i \in \{1, 2, \ldots, 2^n-1\}$, let $f$ be a mapping defined on $D \subseteq E$, s.t.  
+
+$$
+d(f((i-1)2^{-n}), f(i2^{-n})) \leq K2^{-n\alpha}
+$$
+
+Then we can extend this to any $s,t\in D$,  
+
+$$
+d(f(s), f(t)) \leq \frac{2K}{1-2^{-\alpha}}|t-s|^{\alpha}
+$$    
+
+By completeness assumption of $E$, we can extend $f$ to all of $I$ and the extension is Hölder continuous with exponent $\alpha$. More explicitly, the extension is defined by  
+
+$$
+\tilde{X}_t = \lim_{s\to t, s\in D} X_s(\omega)
+$$
+
+when the constant $K$ is finite (which is a event of probability one).   
+
+The final step is to check this limit is equal to the $X_t$ almost surely. This is true from the Markov inequality above, which gives convergence in probability (hence subsequential convergence almost surely, which matches the limit above).  
+
+**Corollary**: If $X$ is a pre-Brownian motion, then it has a modification which is almost surely Hölder continuous with exponent $\alpha=\frac{1}{2}-\delta$ for every $\delta \in (0, \frac{1}{2})$.    
+
+Finally! We arrive at the definition of Brownian motion.  
+
+A process $(B_t)_{t\geq 0}$ is a **Brownian motion** if it is a pre-Brownian motion and all sample paths are continuous.  
+
+
+> More is to be discussed in the next post, including the Wiener measure, properties of sample paths (Blumenthal's 0-1 law), and the strong Markov property.  
+
