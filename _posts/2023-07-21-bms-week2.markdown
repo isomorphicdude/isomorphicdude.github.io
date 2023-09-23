@@ -62,7 +62,19 @@ The following is useful when discussing the variation of Brownian motion.
    where the convergence is in $L^2$.  
 </div>   
 
-The proof is to write $\mathbb{E}[\left(\sum G(A_j)^2 - \mu(A) \right)]=var(\sum G(A_j)^2)$ and uses $var(X^2) = \mathbb{E}[X^4] - \mathbb{E}[X^2]^2=3\sigma^4 - \sigma^4 = 2\sigma^4$ for $X\sim N(0, \sigma^2)$.   
+The proof is to write $\mathbb{E}[\left(\sum G(A_j)^2 - \mu(A) \right)]=var(\sum G(A_j)^2)$ and uses $var(X^2) = \mathbb{E}[X^4] - \mathbb{E}[X^2]^2=3\sigma^4 - \sigma^4 = 2\sigma^4$ for $X\sim N(0, \sigma^2)$.  
+
+>**Example:**  
+This is actually an example from later sections, but it is a good illustration.  
+Let $B$ be a Brownian motion and $0=t_1^n < \cdots < t_{k_n}^n$ be a sequence of partitions of $[0, t]$ with mesh tending to zero. Then we have  
+
+>$$
+>\lim_{n\to \infty} \sum_{i=1}^{k_n} (B_{t_{i+1}^n} - B_{t_i^n})^2 = t
+>$$  
+
+>in $L^2$.
+> Combined with the fact that $B_t$ is a.s. continuous, we see $B$ has infinite variation on any nontrivial interval, almost surely. Thus, it is **NOT** possible to define a Riemann-Stieltjes integral with respect to $B$, motivating the construction of stochastic integrals.
+
 
 # Pre-Brownian Motion  
 
