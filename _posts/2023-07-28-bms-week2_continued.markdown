@@ -8,7 +8,7 @@ math: true
 mathjax: true
 ---   
 
->  A sequel to the previous post on Brownian Motion. We introduce Wiener Measure, the Blumenthal 0-1 Law, and the Strong Markov Property.  
+>  A sequel to the previous post on Brownian Motion. We introduce Wiener Measure, the Blumenthal 0-1 Law, and the Strong Markov Property. This post and the one before were actually posted in September (I did not get much time to write during the summer) but I just change the dates to look more organized.   
 
 
 # Wiener Measure  
@@ -22,7 +22,6 @@ $$
     \Omega &\rightarrow C(\mathbb{R}_+, \mathbb{R}) \\
 \omega &\mapsto (t \mapsto B_t(\omega))
 \end{aligned}
-
 $$
 
 This is a measurable map, since when composed with the projection map, we get a random variable 
@@ -31,9 +30,11 @@ This is a measurable map, since when composed with the projection map, we get a 
   
 
 The **Wiener measure** is then given by the probability measure:  
+
 $$
 W(A) = P(B_. \in A)
-$$
+$$  
+
 for all $A \in \mathcal{L}$ and $B_.$ denotes any random continuous function $t\mapsto B_t(\omega)$.  
 
 To obtain an explicit formula for this measure, we can consider the cylinder sets of the form:  
@@ -95,7 +96,7 @@ In a not so formal way, we can say the Brownian paths are "unstable".
    $$
 </div>
 
-> The superemum and infimum are defined using the intersection with rationals, since the Brownian motion is continuous, this gives the desired measurability.
+> The superemum and infimum are defined using the intersection with $\mathbb{Q}$, since the Brownian motion is continuous, this gives the desired measurability.
 
 To see this, define a set with $\varepsilon_p \downarrow 0$, $p\in \mathbb{N}$,
 
@@ -118,7 +119,7 @@ A consequence of this result is the non-monotonicity of the Brownian motion.
 
 For every rational $q\in\mathbb{Q}$, replace $s=t-q$ in property 1 above and use the simple Markov property to get the desired result.
 
-Another sample path property is that the Brownian motion can reach anywhere in finite time.  
+Another sample path property is that the Brownian motion can reach anywhere in finite time almost surely.    
 
 <div class="transparent-box">
    <b>Sample Path Properties 2</b>
@@ -168,7 +169,7 @@ $$
 
 > We can check this by plugging in the sample $\omega$ and use continuity of Brownian motion.  
 
-In addition, the random variables $\mathbf{1}\_{s<T>} B_s$ is measurable.  
+In addition, the random variables $\mathbf{1}\_{s<T}B\_{s}$ is measurable.  
 
 Now we state the strong Markov property.  
 
