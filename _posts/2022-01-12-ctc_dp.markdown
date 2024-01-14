@@ -32,7 +32,7 @@ $$
 
 - So we can compute (assuming conditional independence between network outputs)  
   $$
-  p(\pi | \mathbf{x}) \  = \ \prod_{t=1}^Ty_{\pi_t}^t  $$
+  p(\pi | \mathbf{x}) \  = \ \mathbb{P}od_{t=1}^Ty_{\pi_t}^t  $$
 - $\pi$ is a valid sequence, $\mathbf{x}$ is an input to the network, $\pi_t$ is its entry at time $t$, and $y_{\pi_t}^t$  is the probability of observing that $\pi_t$ at time $t$ (the network output).  
 - So total probability of obtaining a true sequence $\mathbf{l}$ is 
  $$
