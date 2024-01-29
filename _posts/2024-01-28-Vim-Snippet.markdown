@@ -21,6 +21,7 @@ The first snippet auto-completes `alin` and form a block of code with the link i
 
 ## Code
 ```python
+
 snippet alin "create markdown links from paper links" w
 alin $1 alin$0    
 endsnippet
@@ -29,10 +30,11 @@ priority 1000
 snippet 'alin(.*)alin' "evaluate link and return APA cite in markdown" wr
 `!p
 import requests
+from bs4 import BeautifulSoup
 import json
+# suppress warnings
 import warnings
 warnings.filterwarnings("ignore")
-from bs4 import BeautifulSoup
 
 def get_arxiv_metadata(arxiv_id):
     url = f'http://export.arxiv.org/api/query?id_list={arxiv_id}'
@@ -62,9 +64,15 @@ def get_openreview_metadata(url):
     # Extract the JSON content from the script tag
     data_str = script_tag.string
     data_json = json.loads(data_str)
-
+    
     authors = data_json['props']['pageProps']['forumNote']['content']['authors']
-    year = data_json['props']['pageProps']['forumNote']['invitation']
+    if isinstance(authors, dict):
+        authors = authors['value']
+    
+    try:
+        year = data_json['props']['pageProps']['forumNote']['invitation']
+    except KeyError:
+        year = data_json['props']['pageProps']['forumNote']['invitations'][0]
 
     # year of the form neurips.cc/2021/...
     year = year.split('/')[1]
@@ -90,6 +98,7 @@ def generate_citation(arxiv_link, type = 'arxiv'):
         citation = f"[{formatted_authors}, {year}]({arxiv_link})"
     
     elif type == 'openreview':
+        # openreview_id = arxiv_link.split('/')[-1].split('?')[-1].split('=')[-1]
         # replace pdf with forum
         arxiv_link = arxiv_link.replace('/pdf?', '/forum?')
         
@@ -104,8 +113,6 @@ arxiv_link = arxiv_link.strip()
 type = None
 if 'arxiv' in arxiv_link:
     type = 'arxiv'
-elif 'thecvf' in arxiv_link:
-    type = 'opencv'
 elif 'openreview' in arxiv_link:
     print('openreview')
     type = 'openreview'
