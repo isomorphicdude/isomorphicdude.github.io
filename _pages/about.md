@@ -12,4 +12,6 @@ I also have another academic website which is under construction. However, here 
 
 ## Publications and Writings  
 
-- **UROP 2023 Report**: On Pre-conditioned Langevin Dynamics and its Applications to Score-based Generative Models. [Link](https://isomorphicdude.github.io/assets/Draft.pdf) 
+- **UROP 2023 Report**: On Pre-conditioned Langevin Dynamics and its Applications to Score-based Generative Models. [Link](https://isomorphicdude.github.io/assets/Draft.pdf)
+
+- **Mini-project for Interview**: Expert Controlled Differential Equation for Disease Progression Modelling. [Link](https://isomorphicdude.github.io/assets/Mini_Project.pdf)
