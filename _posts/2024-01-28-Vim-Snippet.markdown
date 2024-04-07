@@ -18,6 +18,11 @@ The first snippet auto-completes `alin` and form a block of code with the link i
 
 ![Usage](/assets/output.gif)
 
+## Caveat Emptor  
+
+I was only able to find an API for `arxiv` but not for other websites like `openreview`. This can break if the website changes its structure.
+
+
 ## Code
 ```python
 
@@ -120,5 +125,3 @@ snip.rv = generate_citation(arxiv_link, type)
 `
 endsnippet
 ```
-
-In the future, I will probably add the CVF links too.
