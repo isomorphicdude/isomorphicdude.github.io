@@ -8,7 +8,6 @@ math: true
 mathjax: true
 ---  
 
-## Brief description
 A tiny code snippet for Vim using `UltiSnips` plugin that can convert links to papers into APA citation in markdown.  
 
 The first snippet auto-completes `alin` and form a block of code with the link inside. The second snippet evaluates the link and returns the APA citation in markdown.
