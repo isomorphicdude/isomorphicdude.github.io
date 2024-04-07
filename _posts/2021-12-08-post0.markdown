@@ -3,7 +3,7 @@ layout: post
 title: "First Blog"
 permalink: /2021-12-08/
 usemathjax: true
-categories: Probability-and-Statistics
+categories: \mathbb{P}obability-and-Statistics
 math: true
 mathjax: true
 ---
@@ -11,19 +11,19 @@ mathjax: true
 ## Returning to recurrent state i.o.   
 
 A recurrent state is defined to be a state $i$ with 
-$Pr(\cup_{n=1}^{\infty}\{X_n\}|X_0=i)=1$. Now we wish to show 
-$Pr(\text{returning i.o.})=1$. 
+$\mathbb{P}(\cup_{n=1}^{\infty}\{X_n\}|X_0=i)=1$. Now we wish to show 
+$\mathbb{P}(\text{returning i.o.})=1$. 
 
 Define $A_m$ to be the event that the chain returns to $i$ at the $m^{\text{th}}$ time step and $B_m$ to be the event that the chain never returns to $i$ after the $m^{\text{th}}$ time step.  
 
-$$Pr(\cup_{m=1}^{\infty} A_m \cap B_m)=Pr(\text{returning finitely often})$$  
+$$\mathbb{P}(\cup_{m=1}^{\infty} A_m \cap B_m)=\mathbb{P}(\text{returning finitely often})$$  
 
 So we wish to show   
 
-$$P\left( \left(\cup_{m=0}^\infty A_m \cap B_m \right)^C \right) =1$$  
+$$\mathbb{P}\left( \left(\cup_{m=0}^\infty A_m \cap B_m \right)^C \right) =1$$  
 
-which is the probability of returning $i.o.$. Now we see by axioms and the condition of a recurrent state.  
+which is the \mathbb{P}obability of returning $i.o.$. Now we see by axioms and the condition of a recurrent state.  
 
-$$Pr(\cup_{m=1}^{\infty} A_m \cap B_m) \leq Pr(\cup_{m=1}^{\infty} B_m)=0$$  
+$$\mathbb{P}(\cup_{m=1}^{\infty} A_m \cap B_m) \leq \mathbb{P}(\cup_{m=1}^{\infty} B_m)=0$$  
 
 Therefore we have the desired result. 
