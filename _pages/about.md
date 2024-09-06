@@ -10,8 +10,8 @@ This is my blog where I discuss things I am interested in (mostly probability, s
 
 I also have another academic website which is under construction. However, here is a short collection of my academic work. 
 
-## Publications and Writings  
+<!-- ## Publications and Writings  
 
 - **UROP 2023 Report**: On Pre-conditioned Langevin Dynamics and its Applications to Score-based Generative Models. [Link](https://isomorphicdude.github.io/assets/Draft.pdf)
 
-- **Mini-project for Interview**: Expert Controlled Differential Equation for Disease Progression Modelling. [Link](https://isomorphicdude.github.io/assets/Mini_Project.pdf)
+- **Mini-project for Interview**: Expert Controlled Differential Equation for Disease Progression Modelling. [Link](https://isomorphicdude.github.io/assets/Mini_Project.pdf) -->
