@@ -453,11 +453,12 @@ $$
 
 It is easy to see that $\mathcal{K}$ is stable under multiplication. Note the indicator functions are defined on $\Omega$ and they generate the $\sigma-$algebra $\mathcal{F}_s$.  
 
-Then we let $\mathcal{H}$ be the set of bounded random variables of the form $\prod_{i=1}^k f_{t_i}(X_{t_i})$ as in the definition of Markov property. It is easy to see that $\mathcal{K} \subseteq \mathcal{H}$ and contains constant functions. By writing out in expectations, we have:  
+Then we let $\mathcal{H}$ be the set of bounded random variables of the form $\prod_{i=1}^k f_{t_i}(X_{t_i})$ as in the definition of Markov property. It is easy to see that $\mathcal{K} \subseteq \mathcal{H}$ and contains constant functions:  
 
 $$
-\mathbb{E}\left[\prod_{i=0}^{k}f_{i}\left(X_{t_{i}}\right)g(X_{s})\right]=\mathbb{E}\left[\prod_{i=0}^{k}f_{i}\left(X_{t_{i}}\right)P_{t,s}g(X_{t})\right]
-$$  
+\mathcal{H} = \left\{\prod_{i=1}^k f_{t_i}(X_{t_i}): \mathbb{E}\left[\prod_{i=0}^{k}f_{i}\left(X_{t_{i}}\right)g(X_{s})\right]=\mathbb{E}\left[\prod_{i=0}^{k}f_{i}\left(X_{t_{i}}\right)P_{t,s}g(X_{t})\right], \, k\in \mathbb{N}, \, \\ 0=t_0 \leq \ldots \leq t_k =s < t\right\}
+$$
+
 
 so by the Monotone Convergence Theorem, the third property of $\mathcal{H}$ is satisfied.  
 
