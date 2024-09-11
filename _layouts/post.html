@@ -4,20 +4,21 @@ layout: default
 
 <article class="post">
   {% if page.categories.size > 0 %}
-    <div class="post-meta">
-      <ul class="post-categories">
-        {%- for category in page.categories -%}
-          <li>
-            {% assign slugified_category = category | slugify %}
-            {%- if site.categories_path -%}
-              <a class="post-category" href="{{ site.categories_path | relative_url }}#{{ slugified_category }}">{{ category }}</a>
-            {%- else -%}
-              <span class="post-category">{{ category }}</span>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    </div>
+  <div class="post-meta">
+    <ul class="post-categories">
+      {%- for category in page.categories -%}
+      <li>
+        {% assign slugified_category = category | slugify %}
+        {%- if site.categories_path -%}
+        <a class="post-category" href="{{ site.categories_path | relative_url }}#{{ slugified_category }}">{{ category
+          }}</a>
+        {%- else -%}
+        <span class="post-category">{{ category }}</span>
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
   {% endif %}
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-meta">
@@ -25,73 +26,238 @@ layout: default
       {{ page.date | date_to_string }}
     </time>
     {%- if page.last_modified_at -%}
-      <span> ~ </span>
-      {%- assign mdate = page.last_modified_at | date_to_xmlschema -%}
-      <time datetime="{{ mdate }}" itemprop="dateModified">
-        {{ mdate | date_to_string }}
-      </time>
+    <span> ~ </span>
+    {%- assign mdate = page.last_modified_at | date_to_xmlschema -%}
+    <time datetime="{{ mdate }}" itemprop="dateModified">
+      {{ mdate | date_to_string }}
+    </time>
     {%- endif -%}
     {%- if page.author -%}
-      <span> • </span>
-      {% for author in page.author %}
-        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          {{ author }}
-        </span>
-        {%- if forloop.last == false %}, {% endif -%}
-      {% endfor %}
+    <span> • </span>
+    {% for author in page.author %}
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      {{ author }}
+    </span>
+    {%- if forloop.last == false %}, {% endif -%}
+    {% endfor %}
     {%- endif -%}
   </div>
-  
+
+  <style>
+    .toc {
+      display: block !important;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Select the element where you want to inject the ToC
+      const tocContainer = document.querySelector(".toc");
+    
+      // Create a new list element for the ToC
+      const tocList = document.createElement("ul");
+    
+      // Select all headings (h1-h6) from the post content
+      const headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    
+      // Loop through the headers and create list items with links
+      headers.forEach(function (header, index) {
+        // Ignore the first heading (assuming it's used as the title)
+        if (index === 0) return;
+    
+        const listItem = document.createElement("li");
+        const anchor = document.createElement("a");
+    
+        // Create a unique ID for each header if it doesn't already have one
+        if (!header.id) {
+          header.id = header.textContent.toLowerCase().replace(/\s+/g, '-');
+        }
+    
+        // Set the anchor href to the header ID
+        anchor.href = `#${header.id}`;
+        anchor.textContent = header.textContent;
+    
+        // Determine the heading level (h1-h6) and apply a class for indentation
+        const level = header.tagName.toLowerCase();
+        listItem.classList.add(`toc-${level}`);
+    
+        // Append the anchor to the list item
+        listItem.appendChild(anchor);
+    
+        // Add the list item to the ToC list
+        tocList.appendChild(listItem);
+      });
+    
+      // Append the ToC list to the container
+      if (tocContainer) {
+        tocContainer.appendChild(tocList);
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --box-border-light: #333;
+      /* Border color for light mode */
+      --box-border-dark: #ccc;
+      /* Border color for dark mode */
+      --box-background-light: #f8f9fa;
+      /* Background color for light mode */
+      --box-background-dark: #2e2e2e;
+      /* Background color for dark mode */
+      --text-color-light: #000;
+      /* Text color for light mode */
+      --text-color-dark: #fff;
+      /* Text color for dark mode */
+    }
+
+    /* General ToC box styles */
+    .toc-box {
+      background-color: var(--box-background-light);
+      border: 1px solid var(--box-border-light);
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      color: var(--text-color-light);
+    }
+
+    /* Light mode styles */
+    .toc-box details summary {
+      font-weight: bold;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .toc-box nav.toc {
+      margin-top: 10px;
+    }
+
+    /* Basic list style */
+    .toc-box nav.toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .toc-box nav.toc li {
+      margin: 5px 0;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    /* Links in ToC */
+    .toc-box nav.toc a {
+      text-decoration: none;
+      color: var(--text-color-light);
+    }
+
+    /* Hover effect for ToC links */
+    .toc-box nav.toc a:hover {
+      text-decoration: underline;
+    }
+
+    /* Style based on heading level */
+    .toc-box nav.toc .toc-h1 {
+      font-weight: bold;
+      padding-left: 10px;
+    }
+
+    .toc-box nav.toc .toc-h2 {
+      padding-left: 20px;
+      list-style-type: none;
+    }
+
+    .toc-box nav.toc .toc-h3 {
+      padding-left: 30px;
+      list-style-type: disc;
+    }
+
+    .toc-box nav.toc .toc-h4 {
+      padding-left: 40px;
+      list-style-type: circle;
+    }
+
+    .toc-box nav.toc .toc-h5 {
+      padding-left: 50px;
+      list-style-type: square;
+    }
+
+    .toc-box nav.toc .toc-h6 {
+      padding-left: 60px;
+      list-style-type: lower-alpha;
+    }
+
+    /* Media query for dark mode */
+    @media (prefers-color-scheme: dark) {
+      .toc-box {
+        background-color: var(--box-background-dark);
+        border-color: var(--box-border-dark);
+        color: var(--text-color-dark);
+      }
+
+      .toc-box nav.toc a {
+        color: var(--text-color-dark);
+      }
+    }
+  </style>
+
+  <div class="toc-box">
+    <details>
+      <summary>Table of Contents</summary>
+      <nav class="toc">
+        <!-- {{ content | toc_only }} -->
+      </nav>
+    </details>
+  </div>
+
+
+
   {{ content }}
 
   {% if page.tags.size > 0 %}
-    <div class="post-meta">
-      <i class="post-tags-icon fas fa-tag"></i>
-      <ul class="post-tags">
-        {%- for tag in page.tags -%}
-          <li>
-            {% assign slugified_tag = tag | slugify %}
-            {%- if site.tags_path -%}
-              <a class="post-tag" href="{{ site.tags_path | relative_url }}#{{ slugified_tag }}">{{ slugified_tag }}</a>
-            {%- else -%}
-              <span class="post-tag">{{ slugified_tag }}</span>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    </div>
+  <div class="post-meta">
+    <i class="post-tags-icon fas fa-tag"></i>
+    <ul class="post-tags">
+      {%- for tag in page.tags -%}
+      <li>
+        {% assign slugified_tag = tag | slugify %}
+        {%- if site.tags_path -%}
+        <a class="post-tag" href="{{ site.tags_path | relative_url }}#{{ slugified_tag }}">{{ slugified_tag }}</a>
+        {%- else -%}
+        <span class="post-tag">{{ slugified_tag }}</span>
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
   {% endif %}
 
   {% if jekyll.environment == "production" and site.disqus and page.comments != false %}
-    {% include disqus.html %}
+  {% include disqus.html %}
   {% endif %}
 </article>
 
 <div class="post-pagination">
   {% if page.next %}
-    <a class="post-pagination-item newer" href="{{ page.next.url | relative_url }}">
-      <i class="fas fa-chevron-left"></i> <span class="post-pagination-title">{{ page.next.title | markdownify | strip_html }}</span>
-    </a>
+  <a class="post-pagination-item newer" href="{{ page.next.url | relative_url }}">
+    <i class="fas fa-chevron-left"></i> <span class="post-pagination-title">{{ page.next.title | markdownify |
+      strip_html }}</span>
+  </a>
   {% else %}
-    <span class="post-pagination-item newer"></span>
+  <span class="post-pagination-item newer"></span>
   {% endif %}
 
   {% if page.previous %}
-    <a class="post-pagination-item older" href="{{ page.previous.url | relative_url }}">
-      <span class="post-pagination-title">{{ page.previous.title | markdownify | strip_html }}</span> <i class="fas fa-chevron-right"></i>
-    </a>
+  <a class="post-pagination-item older" href="{{ page.previous.url | relative_url }}">
+    <span class="post-pagination-title">{{ page.previous.title | markdownify | strip_html }}</span> <i
+      class="fas fa-chevron-right"></i>
+  </a>
   {% else %}
-    <span class="post-pagination-item older"></span>
+  <span class="post-pagination-item older"></span>
   {% endif %}
 </div>
 
 
 
-<script src="https://utteranc.es/client.js"
-        repo="isomorphicdude/isomorphicdude.github.io"
-        issue-term="pathname"
-        label="Comment"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
+<script src="https://utteranc.es/client.js" repo="isomorphicdude/isomorphicdude.github.io" issue-term="pathname"
+  label="Comment" theme="github-dark" crossorigin="anonymous" async>
+  </script>
