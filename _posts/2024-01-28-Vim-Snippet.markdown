@@ -36,7 +36,6 @@ snippet 'alin(.*)alin' "evaluate link and return APA cite in markdown" wr
 import requests
 from bs4 import BeautifulSoup
 import json
-# suppress warnings
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -60,12 +59,10 @@ def get_openreview_metadata(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
 
-    # Find the script tag with the data
     script_tag = soup.find('script', {'id': '__NEXT_DATA__'})
     if not script_tag:
         raise Exception('Data script tag not found')
 
-    # Extract the JSON content from the script tag
     data_str = script_tag.string
     data_json = json.loads(data_str)
     
@@ -94,7 +91,6 @@ def format_authors(authors):
 
 def generate_citation(arxiv_link, type = 'arxiv'):
     if type == 'arxiv':
-        # Ensure link is to the 'abs' page, not the 'pdf' page
         arxiv_link = arxiv_link.replace('/pdf/', '/abs/').replace('.pdf', '')
         arxiv_id = arxiv_link.split('/')[-1]
         authors, year = get_arxiv_metadata(arxiv_id)
