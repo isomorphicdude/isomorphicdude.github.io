@@ -186,26 +186,36 @@ As a result, $N_\infty([a,b], X)$ is also $\mathcal{F}_n$ measurable. To bound t
 
 <details>
 <summary><b>Proof</b></summary>
+<p>
 Define $Y_n = (X_n-a)^+$ (centering it, still sub-martingale due to convexity) and construct a predictable sequence:  
+</p>
 
 $$
 H_{n}=\sum_{k=1}^{\infty}{\mathbf{1}}_{\{S_{k}<n\leq T_{k}\}}\leq1
 $$  
 
+<p>
 Now we have 
+</p>
 
 $$
 (H\cdot Y)_n = \sum_{k=1}^{N_{n}}(Y_{T_{k}}-Y_{S_{k}})+1_{\{S_{N_{n+1}}<n\}}(Y_{n}-Y_{S_{N_{n+1}}}) \geq (b-a)N_n 
 $$
 
-where the first equality used telescoping sums of $X_k$ in-between two crossings and the inequality is due to $X\_{S_{N_n+1}}\leq a \implies Y_{S_{N_n+1}}=0$.
+<p>
+where the first equality used telescoping sums of $X_k$ in-between two crossings and the inequality is due to $X_{S_{N_n+1}}\leq a \implies Y_{S_{N_n+1}}=0$.
+</p>
 
+<p>
 Define $K_n=1-H_n$, which is nonnegative and predictable. Also, by the margingale transform, we see that $(H\cdot Y)_n$ is a submartingale, implying $\mathbb{E}[(H\cdot Y)_n]\geq \mathbb{E}[(H\cdot Y)_0] = 0$, so by this nonnegativity, we have:
+</p>
 
 $$
 (b-a)\mathbb{E}[N_{n}]\leq\mathbb{E}[(H\cdot Y)_{n}]\leq\mathbb{E}[(K\cdot Y)_{n}+(H\cdot Y)_{n}]=\mathbb{E}[Y_{n}-Y_{0}]
 $$
 </details>
+
+
 Now, combining the two lemmas, it follows easily by using triangle inequality on $\mathbb{E}[(X_n-a)^+]$ and taking $n\to \infty$ under $L^1$ boundedness, we have the following result:  
 
 <div class="transparent-box">
@@ -227,39 +237,43 @@ Building upon this result, we can characterize $L^1$ convergence of martingales.
 
 <details>
 <summary><b>Proof</b></summary>
-1. $\implies$ 2. is immediate by noting $X_n = \mathbb{E}[X_m \mid \mathcal{F}_n]$ for $m\geq n$ and taking the limit $m\to\infty$, as $Y \to \mathbb{E}[Y \mid \mathcal{F}_n]$ is a continuous mapping (actually a contraction).
+<p>1. $\implies$ 2. is immediate by noting $X_n = \mathbb{E}[X_m \mid \mathcal{F}_n]$ for $m\geq n$ and taking the limit $m\to\infty$, as $Y \to \mathbb{E}[Y \mid \mathcal{F}_n]$ is a continuous mapping (actually a contraction).</p>
 
-For 2. $\implies$ 1., we first note that we have almost sure convergence as $Z \in L^1$. If $\|Z\| \leq K < \infty$ for some constant, then $\|X_n\| \leq K$ for all $n$ and we can apply the dominated convergence theorem to get $X_n \to X_\infty$ in $L^1$. 
+<p>For 2. $\implies$ 1., we first note that we have almost sure convergence as $Z \in L^1$. If $\|Z\| \leq K < \infty$ for some constant, then $\|X_n\| \leq K$ for all $n$ and we can apply the dominated convergence theorem to get $X_n \to X_\infty$ in $L^1$.</p>
 
-We now outline the argument for the general case, which uses the $3-\epsilon$ argument.
+<p>We now outline the argument for the general case, which uses the $3-\epsilon$ argument.</p>
 
-- Fix $\varepsilon > 0$, choose an $M$ large enough, such that    
+<ul>
+<li>Fix $\varepsilon > 0$, choose an $M$ large enough, such that</li>
+</ul>
 
 $$
 \mathbb{E}[|Z - Z\mathbf{1}_{\{|Z| \leq M\}}|] < \varepsilon
 $$  
 
-- Now denote $Y_n = \mathbb{E}[Z\mathbf{1}\_{\\{\|Z\| \leq M\\}} \mid \mathcal{F}_n]$, then we have:
+<ul>
+<li>Now denote $Y_n = \mathbb{E}[Z\mathbf{1}\_{\\{\|Z\| \leq M\\}} \mid \mathcal{F}_n]$, then we have:</li>
+</ul>
 
 $$
-   \mathbb{E}[|X_n - Y_n|] \leq \mathbb{E}[|Z - Z\mathbf{1}_{\{|Z| \leq M\}}|] < \varepsilon
+   \mathbb{E}[|X_n - Y_n|] < \varepsilon
 $$  
 
--  Since $Z\mathbf{1}\_{\\{\|Z\| \leq M\\}}$ is bounded by constant $M$, we have $Y_n$ converges almost surely to some $Y_\infty$ and in $L^1$ to $Y_\infty$. Thus, we can choose $N$ large such that for all $m,n \geq N$, we
-have:  
+<ul>
+<li>Since $Z\mathbf{1}\_{\\{\|Z\| \leq M\\}}$ is bounded by constant $M$, we have $Y_n$ converges almost surely to some $Y_\infty$ and in $L^1$ to $Y_\infty$. Thus, we can choose $N$ large such that for all $m,n \geq N$, we have:</li>
+</ul>
 
 $$
 \mathbb{E}[|Y_n - Y_m|] \leq \varepsilon
 $$
 
-Now we can use the triangle inequality to get:  
+<p>Now we can use the triangle inequality to get:</p>
 
 $$
 \mathbb{E}[|X_n - X_m|] \leq \mathbb{E}[|X_n - Y_n|] + \mathbb{E}[|Y_n - Y_m|] + \mathbb{E}[|Y_m - X_m|] \leq 3\varepsilon
 $$  
 
-This shows that $(X_n)_n$ is a Cauchy sequence in $L^1$ and thus converges.
-
+<p>This shows that $(X_n)_n$ is a Cauchy sequence in $L^1$ and thus converges.</p>
 </details>
 
 The limit of this convergent sequence is given by:
@@ -305,37 +319,37 @@ We denote $X_n^+ = \max(X_n, 0)$ and $X_n^- = \max(-X_n, 0)$.
 
 <details>
 <summary><b>Proof (Sketch)</b></summary>
-For the submartingale case, we define the event:    
+<p>For the submartingale case, we define the event:</p>    
 
 $$
 A = \{\sup_{0 \leq k \leq n} X_k \geq \lambda\}.
 $$  
 
-Then by the definition of stopping time, we can define:  
+<p>Then by the definition of stopping time, we can define:</p>  
 
 $$
 T = \inf\{k \geq 0 : X_k \geq \lambda\},
 $$  
 
-which gives us: $A = \\{T \leq n\\}$.  
+<p>which gives us: $A = \\{T \leq n\\}$.</p>  
 
-Similar to Markov's inequality, we have:  
+<p>Similar to Markov's inequality, we have:</p>  
 
 $$
 X_{T \wedge n} \geq \lambda \mathbf{1}_{A} + X_n \mathbf{1}_{A^c}.
 $$  
 
-Using $X_S \leq X_T$ for stopping times $S \leq T$, we have $\mathbb{E}[X_{T \wedge n}] \leq \mathbb{E}[X_n]$, which gives  
+<p>Using $X_S \leq X_T$ for stopping times $S \leq T$, we have $\mathbb{E}[X_{T \wedge n}] \leq \mathbb{E}[X_n]$, which gives</p>  
 
 $$
 \mathbb{E}[X_n] \geq \lambda \mathbb{P}(A) + \mathbb{E}[X_n \mathbf{1}_{A^c}],
 $$  
 
-which gives the first inequality. 
+<p>which gives the first inequality.</p> 
 
-> **Remark**: We used the submartingale property when showing $S \leq T$ implies $\mathbb{E}[X_S] \leq \mathbb{E}[X_T]$ for stopping times $S \leq T$; this result can be shown via the martigale transform, which satisfies $\mathbb{E}[(H\cdot X)_n] \geq \mathbb{E}[(H\cdot X)_0] = 0$.    
+<p>**Remark**: We used the submartingale property when showing $S \leq T$ implies $\mathbb{E}[X_S] \leq $\mathbb{E}[X_T]$ for stopping times $S \leq T$; this result can be shown via the martingale transform, which satisfies $\mathbb{E}[(H\cdot X)_n] \geq \mathbb{E}[(H\cdot X)_0] = 0$.</p>    
 
-Analogously, we can show the second inequality by defining:   
+<p>Analogously, we can show the second inequality by defining:</p>   
 
 $$  
 B = \{\sup_{0 \leq k \leq n} Y_k \geq \lambda\},
@@ -345,13 +359,13 @@ $$
 R = \inf\{k \geq 0 : Y_k \geq \lambda\}
 $$  
 
-which gives: $B = \\{R \leq n\\}$. This gives a chain of inequalities (since $Y$ is a supermartingale):   
+<p>which gives: $B = \\{R \leq n\\}$. This gives a chain of inequalities (since $Y$ is a supermartingale):</p>   
 
 $$
 \mathbb{E}[Y_0] \geq \mathbb{E}[Y_{R \wedge n}] \geq \lambda \mathbb{P}(B) + \mathbb{E}[Y_n \mathbf{1}_{B^c}]
 $$  
 
-from which we get the desired result.  
+<p>from which we get the desired result.</p>  
 </details>
 
 This leads to the maximal inequalities in the $L^p$ norm. We will denote the supremum up to time $n$ as:
@@ -384,13 +398,13 @@ $$
 First note that the second inequality follows from the first. We will assume $\mathbb{E}[(X_n)^p] < \infty$ for all $n$.  
 > This implies $\mathbb{E}[(\tilde{X}_n)^p] < \infty$.  
 
-The key idea in the proof is to form an integral using the maximal inequality [above](#convergence-in-lp): 
+<p>The key idea in the proof is to form an integral using the maximal inequality above:</p> 
 
 $$
 \lambda \mathbb{P}(\tilde{X}_n \geq \lambda) \leq \mathbb{E}[{X}_n \mathbf{1}_{\tilde{X}_n \geq \lambda}]
 $$  
 
-By multiplying $\lambda^{p-2}$ and integrating, the LHS of the inequality becomes:  
+<p>By multiplying $\lambda^{p-2}$ and integrating, the LHS of the inequality becomes:</p>  
 
 $$
 \begin{aligned}
@@ -401,7 +415,7 @@ $$
 \end{aligned}
 $$   
 
-where we have used Fubini's theorem. Similary, for the RHS, we have:  
+<p>where we have used Fubini's theorem. Similary, for the RHS, we have:</p>  
 
 $$
 \begin{aligned}
@@ -411,13 +425,13 @@ $$
 \end{aligned}
 $$
 
-Now using Hölder's inequality, we have:   
+<p>Now using Hölder's inequality, we have:</p>   
 
 $$
 \mathbb{E}[X_n \tilde{X}_n^{p-1}] \leq \mathbb{E}[(X_n)^p]^{1/p} \mathbb{E}[(\tilde{X}_n^{p-1})^{\frac{p}{p-1}}]^{\frac{p-1}{p}}
 $$   
 
-Combining the two inequalities, we get the desired result.  
+<p>Combining the two inequalities, we get the desired result.</p>  
 </details>
 
 
@@ -437,26 +451,25 @@ This leads to the following result.
 </div>
 
 <details>
-
 <summary><b>Proof</b></summary>
 <div>
-Since the martingale is in $L^p$, it is also bounded in $L^1$ and we can apply the almost sure convergence result, i.e. $X_n \to X_\infty$ a.s. for some $X_\infty$, which will enable us to apply the Dominated Convergence Theorem.
+<p>Since the martingale is in $L^p$, it is also bounded in $L^1$ and we can apply the almost sure convergence result, i.e. $X_n \to X_\infty$ a.s. for some $X_\infty$, which will enable us to apply the Dominated Convergence Theorem.</p>
 </div>
-First, we will need to find a dominating random variable. By the $L^p$ maximal inequality, we have:  
+<p>First, we will need to find a dominating random variable. By the $L^p$ maximal inequality, we have:</p>  
 
 $$
 \mathbb{E}[(X_n^*)^p] \leq \left(\frac{p}{p-1}\right)^p \mathbb{E}[|X_n|^p]
 $$    
 
-Now by $X_n^* \uparrow \sup_n |X_n|$ and montone convergencce, we have:   
+<p>Now by $X_n^* \uparrow \sup_n |X_n|$ and montone convergencce, we have:</p>   
 
 $$
 \mathbb{E}[(\sup_n |X_n|)^p] \leq \left(\frac{p}{p-1}\right)^p \sup_n \mathbb{E}[|X_n|^p] < \infty
 $$  
 
-which shows that $|X_n|$ is dominated by $\sup_n |X_n|$ in $L^p$. Now we can apply the Dominated Convergence Theorem to get the onvergence.  
+<p>which shows that $|X_n|$ is dominated by $\sup_n |X_n|$ in $L^p$. Now we can apply the Dominated Convergence Theorem to get the onvergence.</p>  
 
-To show the equality of the $L^p$ norms, it suffices to note that the sequence $\mathbb{E}[|X_n|^p]$ is increasing and bounded, so its limit is the supremum.  Indeed, note that for $m>n$:   
+<p>To show the equality of the $L^p$ norms, it suffices to note that the sequence $\mathbb{E}[|X_n|^p]$ is increasing and bounded, so its limit is the supremum.  Indeed, note that for $m>n:</p>   
 $$
 \mathbb{E}[|X_n|^p] \leq \mathbb{E}[|\mathbb{E}[X_m|\mathcal{F}_n]|^p] \leq \mathbb{E}[\mathbb{E}[|X_m|^p|\mathcal{F}_n]] = \mathbb{E}[|X_m|^p]
 $$
