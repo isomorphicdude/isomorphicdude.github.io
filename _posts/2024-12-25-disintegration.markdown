@@ -307,7 +307,7 @@ $$
 - $P^{X \times Y}$ and $P^{Y \times Z}$ be the projection maps from $X \times Y \times Z$ to $X \times Y$ and $Y \times Z$ respectively. 
 
 $$
-P^{X\times Y} (x,y,z)=(x,y) \quad \text{{and}}\quad P^{Y\times Z}(x,y,z)=(y,z)
+P^{X\times Y} (x,y,z)=(x,y) \quad \text{and} \quad P^{Y\times Z}(x,y,z)=(y,z).
 $$
 
  Then there is a measure $\gamma \in \mathcal{P}(X\times Y\times Z)$ s.t.
