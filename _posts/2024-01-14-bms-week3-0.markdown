@@ -306,16 +306,22 @@ Now we can finish using a Monotone Class argument.
 
 From another perspective, instead of the "fluctuations" of the martingale, we can also consider the maximal value of the martingale. The following Markov-type inequality gives a bound on the probability of the martingale being large up to a certain time $n$ in terms of its expectation.  
 
-We denote $X_n^+ = \max(X_n, 0)$ and $X_n^- = \max(-X_n, 0)$. 
+We denote $X_n^+ = \max(X_n, 0)$ and $X_n^- = \max(-X_n, 0)$. Note that both $f(x) = \max(x, 0)$ and $g(x) = \max(-x, 0)$ are convex functions, so applying them to a submartingale preserves its property.  
 
 <div class="transparent-box">
    <b>Doob's Maximal Inequality:</b> Let $(X_n)_n$ be a submartingale. Then for all $\lambda > 0$, 
    $$\lambda \mathbb{P}(\sup_{0 \leq k \leq n} X_k \geq \lambda) \leq \mathbb{E}[X_n \mathbf{1}_{\{\sup_{0 \leq k \leq n} X_k \geq \lambda\}}] \leq \mathbb{E}[X_n^+]$$
    Similarly, if $(Y_n)_n$ is a supermartingale, then 
    $$
-   \lambda \mathbb{P}(\sup_{0 \leq k \leq n} Y_k \geq \lambda) \leq \mathbb{E}[Y_0] + \mathbb{E}[Y_n^-]
+   \lambda \mathbb{P}(\sup_{0 \leq k \leq n} Y_k \geq \lambda) \leq \mathbb{E}[Y_0] + \mathbb{E}[Y_n^-].
+   $$
+   Additionally, if we use the absolute value of $Y_n$, then we have:
+   $$
+   \lambda \mathbb{P}(\sup_{0 \leq k \leq n} |Y_k| \geq \lambda) \leq \mathbb{E}[|Y_0|] + 2\mathbb{E}[|Y_n|]
    $$
 </div>
+
+> **Remark**: The last case will be used in continuous-time martingales.
 
 <details>
 <summary><b>Proof (Sketch)</b></summary>
@@ -331,12 +337,12 @@ $$
 T = \inf\{k \geq 0 : X_k \geq \lambda\},
 $$  
 
-<p>which gives us: $A = \\{T \leq n\\}$.</p>  
+<p>which gives us: $A = \{T \leq n\}$.</p>  
 
 <p>Similar to Markov's inequality, we have:</p>  
 
 $$
-X_{T \wedge n} \geq \lambda \mathbf{1}_{A} + X_n \mathbf{1}_{A^c}.
+X_{T \wedge n} \geq \lambda \mathbf{1}_{A} + X_n \mathbf{1}_{A^C}.
 $$  
 
 <p>Using $X_S \leq X_T$ for stopping times $S \leq T$, we have $\mathbb{E}[X_{T \wedge n}] \leq \mathbb{E}[X_n]$, which gives</p>  
@@ -347,9 +353,9 @@ $$
 
 <p>which gives the first inequality.</p> 
 
-<p>**Remark**: We used the submartingale property when showing $S \leq T$ implies $\mathbb{E}[X_S] \leq $\mathbb{E}[X_T]$ for stopping times $S \leq T$; this result can be shown via the martingale transform, which satisfies $\mathbb{E}[(H\cdot X)_n] \geq \mathbb{E}[(H\cdot X)_0] = 0$.</p>    
+<p><b>Remark</b>: We used the submartingale property when showing $S \leq T$ implies $\mathbb{E}[X_S] \leq \mathbb{E}[X_T]$ for stopping times $S \leq T$; this result can be shown via the martingale transform, which satisfies $\mathbb{E}[(H\cdot X)_n] \geq \mathbb{E}[(H\cdot X)_0] = 0$.</p>    
 
-<p>Analogously, we can show the second inequality by defining:</p>   
+<p>Analogously, we can show the second inequality by defining the event $B$ and the corresponding stopping time $R$:</p>   
 
 $$  
 B = \{\sup_{0 \leq k \leq n} Y_k \geq \lambda\},
@@ -359,16 +365,35 @@ $$
 R = \inf\{k \geq 0 : Y_k \geq \lambda\}
 $$  
 
-<p>which gives: $B = \\{R \leq n\\}$. This gives a chain of inequalities (since $Y$ is a supermartingale):</p>   
+<p>which gives: $B = \{R \leq n\}$. This gives a chain of inequalities (since $Y$ is a supermartingale):</p>   
 
 $$
 \mathbb{E}[Y_0] \geq \mathbb{E}[Y_{R \wedge n}] \geq \lambda \mathbb{P}(B) + \mathbb{E}[Y_n \mathbf{1}_{B^c}]
 $$  
 
 <p>from which we get the desired result.</p>  
+
+<p>For the last case, we note that $(-Y_n)$ is a submartingale and hence $(-Y_n)^+$ and $(-Y_n)^-$ are also submartingales. Also, by applying the same argument as above, we have:</p>
+$$
+C = \{\sup_{0 \leq k \leq n} |Y_k| \geq \lambda\} \\
+S = \inf\{k \geq 0 : |Y_k| \geq \lambda\}
+$$
+<p>which gives: $C = \{S \leq n\}$. This gives the inequality:</p>
+$$
+|Y_{S \wedge n}| \geq \lambda \mathbf{1}_{C} + |Y_n| \mathbf{1}_{C^C}
+$$
+<p>where we can bound the LHS by:</p>
+$$
+\mathbb{E}[|Y_{S \wedge n}|] = \mathbb{E}[Y_{S \wedge n}^+] + \mathbb{E}[Y_{S \wedge n}^-] \leq \mathbb{E}[Y_0^+] + \mathbb{E}[(-Y_{S \wedge n})^+] \leq \mathbb{E}[|Y_0|] + \mathbb{E}[|Y_n|] 
+$$
+<p>which gives the desired result. In the penultimate inequality, we used the fact that $(-Y_n)^+$ is a submartingale and $Y$ is a supermartingale.</p>
 </details>
 
-This leads to the maximal inequalities in the $L^p$ norm. We will denote the supremum up to time $n$ as:
+---
+
+This leads to the maximal inequalities in the $L^p$ norm. 
+
+We will denote the supremum up to time $n$ as:
 
 $$
 \tilde{X}_n = \sup_{0 \leq k \leq n} X_k
