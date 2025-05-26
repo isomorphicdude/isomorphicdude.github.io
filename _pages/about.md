@@ -3,9 +3,7 @@ layout: default
 title: About
 permalink: /about/
 ---
-Hi! I am @isomorphicdude (semi-anonymous for now, as I have a proper academic website under construction).
-
-<!-- <sub>It's easy to guess and use ChatGPT!</sub> -->
+Hi! I am @isomorphicdude.
 
 I am currently a PhD student at Imperial College London in the Department of Mathematics. Prior to this, I graduated with an MSc in Statistical Science from the University of Oxford and a BSc in Mathematics from Imperial College London.
 
