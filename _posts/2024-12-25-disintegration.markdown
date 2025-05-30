@@ -8,29 +8,31 @@ math: true
 mathjax: true
 ---   
 
-> From [Chang and Pollard, Statistica Neerlandica 1997](http://www.stat.yale.edu/~jtc5/papers/ConditioningAsDisintegration.pdf)
-> Also see chapters on regular conditional probabilities.
+> Taken from [Chang and Pollard, Statistica Neerlandica 1997](http://www.stat.yale.edu/~jtc5/papers/ConditioningAsDisintegration.pdf). Also see chapters on regular conditional probabilities in Pollard's book.
+> 
+> This is ported from my Obsidian notes, so there might be some formatting issues.
 
 ## Disintegration of Measures
 
 ### Set up
 - $(\mathcal{X}, \mathcal{A},\lambda)$ and $(\mathcal{T}, \mathcal{B}, \mu)$ are measure spaces with a measurable map $T:\mathcal{X}\to \mathcal{T}$ 
 
-- Require both $\lambda$ and $\mu$ are sigma-finite
+- We require both $\lambda$ and $\mu$ are sigma-finite
 
-- Here indicator with measure is $\lambda \{ T=t \}\equiv \lambda(\mathbf{1}[x \in\{ T=t \}])$
+- Here we denote $\lambda \\{ T=t \\}\equiv \lambda(\mathbf{1}[x \in\\{ T=t \\}])$
 
-- And integrals are denoted as linear functionals $\lambda_{t}f=\int f d\lambda_{t}$
+- Integrals are denoted as linear functionals $\lambda_{t}f=\int f d\lambda_{t}$
 	- with $\mu^tf$ denoting integration w.r.t. the variable $t$
 
-- With the push-forward denoted as $T\lambda (B)=\lambda (T^{-1}(B))$ 
+- With the push-forward denoted as $T\lambda (B)=\lambda (T^{-1}(B))$ for some measurable set $B\in \mathcal{B}$
 
+---
 
 ### Definition
 
-We say $\lambda$ has a **disintegration** $\{\lambda_{t}\}_t$ w.r.t. $(T,\mu)$ if:
+We say $\lambda$ has a **disintegration** $\\{\lambda_{t}\\}_t$ w.r.t. $(T,\mu)$ if:
 
-1. (*Concentration*) $\lambda_{t}$ is a sigma-finite measure on $\mathcal{A}$ concentrated on $\{ T=t \}$, with $\lambda_{t}\{ T\neq t \}=0$ for $\mu$-almost every $t \in \mathcal{T}$. 
+1. (*Concentration*) $\lambda_{t}$ is a sigma-finite measure on $\mathcal{A}$ concentrated on $\\{ T=t \\}$, with $\lambda_{t}\\{ T\neq t \\}=0$ for $\mu$-almost every $t \in \mathcal{T}$. 
  
 > so functions with $g(Tx)=g(t), \lambda_{t}-a.s.$
 
@@ -41,21 +43,24 @@ and for each non-negative, measurable $f$ on $\mathcal{X}$
 3. (*Mixing*) $\lambda f=\mu^t (\lambda_{t}f)$
 	- which should read as $\int f d\lambda=\int (\int f d\lambda_{t})d\mu^t$
 
-**Remark:** Here the first one is as in the discrete conditional probability
-
-> I call mixing since $\mu$ is the mixing measure here (similar to GMM)
+> I call this mixing since $\mu$ is the mixing measure here (similar to GMM)
 
 
-Assuming existence with some extra topological constraints, *which makes the result stronger than the Kolmogorov one but also less general*, we have the following that characterises the measure.
+We assume the existence of disintegrations here with some extra topological constraints, *which makes the result stronger than the Kolmogorov definition of conditional probability, but also less general*. 
+
+--- 
+
+The following theorem characterises the disintegration $\lambda_{t}$:  
 
 ### Theorem (sigma-finite)
 
 Let $\lambda_{t}$ have a $(T,\mu)$ disintegration with conditions above.
 
-> (**Densities**) For applications, allow $\rho$ to be $\rho \ll \lambda$ and has density $r(x)$. Assume the usual $\lambda_{t}$ disintegration exists, then we have $\rho_{t}\ll \lambda_{t}$ , where the density is **also** $r(x)$
+> (**Densities**) If we assume $\rho$ to be s.t. $\rho \ll \lambda$ and has density $r(x)$. Then the usual $\lambda_{t}$ disintegration exists, and we have $\rho_{t}\ll \lambda_{t}$, where the density is **also** $r(x)$
 
-1 (***Absolute continuity***) We have the image measure satisfies $T\lambda \ll \mu$ , with density of $T\lambda$ being $\lambda_{t}\mathcal{X}$ 
-	- With density, image measure has  $T\rho\ll \mu$ with density $\lambda_{t}r$
+1 (***Absolute continuity***) The image measure satisfies $T\lambda \ll \mu$ , with density of $T\lambda$ being $\lambda_{t}\mathcal{X}$  
+
+- With density, image measure has $T\rho\ll \mu$ with density $\lambda_{t}r$
 
 > i.e. the density is the measure of whole space under the disintegration  
 
@@ -63,7 +68,7 @@ Let $\lambda_{t}$ have a $(T,\mu)$ disintegration with conditions above.
 2 (***Finite and Sigma-finite***) We have the following equivalence  
 
 $$
-\{ \lambda_{t} \} \text{ are finite for all t } \mu-a.e. \iff T\lambda \ \text{is sigma-finite}
+\{ \lambda_{t} \} \text{ are finite for all } t \mu-a.e. \iff T\lambda \ \text{is $\sigma$-finite}
 $$  
 
 - similar results for $\rho_{t}$  
@@ -74,14 +79,14 @@ $$
 3  (***Disintegration as Probability***)   
 
 $$  
-\{ \lambda_{t} \} \text{ are probabilities for all t}  \mu-a.e. \iff T\lambda=\mu
+\{ \lambda_{t} \} \text{ are probabilities for all } t  \mu-a.e. \iff T\lambda=\mu
 $$  
 
 - similar for $\rho_{t}$  
 
-> this directly characterises the probability, and in many use-cases we set $\mu$ as the push-forward.  
+> this directly characterises the probability, and in many use-cases we set $\mu$ as the push-forward of $\lambda$.  
 
-4 (***Normalising to Probability***) If $T\lambda$ is sigma-finite and $(T\lambda)\{ \lambda_{t} \mathcal{X}=0 \}=0$ and $(T\lambda)\{  \lambda_t \mathcal{X} =\infty \}=0$. For $T\lambda$-almost all $t$, the measures:  
+4 (***Normalising to Probability***) If $T\lambda$ is sigma-finite and $(T\lambda)\\{ \lambda_{t} \mathcal{X}=0 \\}=0$ and $(T\lambda)\\{ \lambda_t \mathcal{X} =\infty \\}=0$. For $T\lambda$-almost all $t$, the measures:  
 
 $$
 \tilde{\lambda}_{t}(\cdot) = \frac{\lambda_{t}(\cdot)}{\lambda_{t}\mathcal{X}}\left\{0<\lambda_{t}\mathcal{X}<\infty\right\}
@@ -110,37 +115,38 @@ which shows $\ell(t)$ is indeed the density (here $g$ is arbitrarily measurable)
 
 **2**  
 
-Use the fact that a [Measure is sigma-finite iff there is a finite integral of positive function](https://math.stackexchange.com/questions/1134136/%CE%BC-is-%CF%83-finite-iff-lpx-contains-a-strictly-positive-function). There exists $h(t)$ s.t. $\lambda h(t)<\infty$.   
+We use the fact that a [Measure is sigma-finite iff there is a finite integral of positive function](https://math.stackexchange.com/questions/1134136/%CE%BC-is-%CF%83-finite-iff-lpx-contains-a-strictly-positive-function). There exists $h(t)$ s.t. $\lambda h(t)<\infty$.   
 
-So *for the first direction* $\ell(t)<\infty$, then define   
+So *for the first direction*, assuming $\ell(t)<\infty$, we define   
 
 $$
-g(t)=\frac{h(t)}{1+\ell(t)}
+g(t)=\frac{h(t)}{1+\ell(t)},
 $$  
 
-which is strictly positive and so $T\lambda$ sigma-finite by substituting into equalities in 1.  
+which is strictly positive and thus $T\lambda$ is sigma-finite by substituting this into the integrals in 1.  
 
-*On the other hand*, if $T\lambda$ is sigma-finite, then there is some $k(t)$ so $\int k(t)\ell(t)\mu(dt)<\infty$ implying finiteness of $\ell(t)$ hence $\lambda_{t}$.
+*Conversely*, if $T\lambda$ is sigma-finite, then there exists some $k(t)$ so $\int k(t)\ell(t)\mu(dt)<\infty$, which implies the finiteness of $\ell(t)$, hence $\lambda_{t}$.
 
 
 **3**  
 
 *First direction:* $\ell(t)=1$ then the equalities hold with arbitrary $g$ hence $T\lambda=\mu$. 
 
-*Conversely*, by choosing specific $g(t)=h(t)\{\ell(t)<1\}$ and $g(t)=h(t)\{\ell(t)>1\}$ shows the conditioning sets have measure zero.
+*Conversely*, choosing specific $g(t)=h(t)\\{\ell(t)<1\\}$ and $g(t)=h(t)\\{\ell(t)>1\\}$ shows the conditioning sets have measure zero.
 
 **4**  
 
 Simply expand the definition of disintegration, $\lambda f=\mu^{t}\lambda_{t}f$ and by definition  
 
 $$
-\mu^{t}\ell(t)\tilde{\lambda}_{t}f+\mu^{t}(\{\ell(t)=0\}\lambda_{t}f)+\mu^{t}(\{\ell(t)=\infty\}\lambda_{t}f)
+\mu^{t}\ell(t)\tilde{\lambda}_{t}f+\mu^{t}(\\{\ell(t)=0\\}\lambda_{t}f)+\mu^{t}(\\{\ell(t)=\infty\\}\lambda_{t}f)
 $$  
 
 which equals $(T\lambda)^{t}\lambda_{t}f$.
 
+---
 
-## Existence of disintegration
+## Existence and Uniqueness of disintegration
 
 **Theorem 1 (Existence Theorem)**  
 - Let $\lambda$ be a *sigma-finite* *Radon* measure on a metric space $\mathcal{X}$ 
@@ -149,29 +155,33 @@ which equals $(T\lambda)^{t}\lambda_{t}f$.
 
 - Let $\mu$ be a sigma-finite measure on $\mathcal{B}$ that *dominates* the image measure $T\lambda$.  
 
-If $\mathcal{B}$ is countably generated and contains *all* the singleton sets $\{t\}$, then $\lambda$ has a $(T, \mu)$-disintegration.  
+If $\mathcal{B}$ is countably generated and contains *all* the singleton sets $\\{t\\}$, then $\lambda$ has a $(T, \mu)$-disintegration.  
 
-The $\lambda_t$ measures are *uniquely* determined up to an almost sure equivalence: if $\{\lambda_t^*\}$ is another $(T, \mu)$-disintegration, then:
+The $\lambda_t$ measures are *uniquely* determined up to an almost sure equivalence: if $\\{\lambda_t^*\\}$ is another $(T, \mu)$-disintegration, then:
 $$
 \mu\{t \in T : \lambda_t \neq \lambda_t^*\} = 0.
 $$
 > See the original article's appendix for a proof.
 
+---
+> I now include some example use cases of disintegration, which appear frequently in statistics courses.
 
 ## Example: Sufficient Statistics $T(\theta)$
 
-The proof of the following well-known theorem is often omitted.
+> The proof of the following well-known theorem characterising sufficiency (in a frequentist setting) is often omitted. We adapt the proof from the original article, which uses the disintegration theorem.  
 
 We let $(\mathcal{X}, \lambda)$ be the base space where the measure $\mathbb{P}$ has a density.
 <div class="transparent-box">
-  The statistic $T(x), x \in \mathcal{X}$ is *sufficient* if and only if the density admits the factorisation:
+  The statistic $T(x), x \in \mathcal{X}$ is <b>sufficient</b> if and only if the density admits the factorisation:
 $$
 p(x,\theta) = g(Tx, \theta) h(x)
 $$
 for measurable functions $g$ and $h$.
 </div>    
 
-Here we refine the definition of *sufficiency* as the disintegration of $T, \lambda$ does not depend on $\theta$, *i.e.* the measure $P\_{t}(\cdot)=\mathbb{P}(\cdot\vert T=t)$ does not depend on $\theta$, and this ${P}_{t}$ is **shared** for all parameters $\theta$
+> Here we refine the definition of *sufficiency* as:
+> The disintegration of $T, \lambda$ does not depend on $\theta$, 
+> *i.e.* the measure $P\_{t}(\cdot)=\mathbb{P}(\cdot\vert T=t)$ does not depend on $\theta$, and this ${P}_{t}$ is **shared** for all parameters $\theta$
 
 **Proof with disintegration:**
 
@@ -209,7 +219,7 @@ $$
 0<\lambda_{t}^xg(T x,\theta)h(x)=g(t,\theta)\lambda_{t}h<\infty
 $$   
 
-for $t, T\mathbb{P}_{\theta}-$almost surely. So we can cancel out the factor containing $\theta$.
+for all $t, T\mathbb{P}_{\theta}-$almost surely. So we can cancel out the factor containing $\theta$.
 
 > Note that the $>0$ and $<\infty$ guarantees the fraction is well-defined.
 
@@ -260,17 +270,20 @@ which is a desired factorisation.
 
 > Note even though $\mathbb{P}$'s construction involves $\theta_{i}$ , we can choose not to include the current $\theta$ in the countable set (usually parameter space $\Theta$ is uncountable). 
 
+---
+
+
 ## Example: Conditional Fisher Information
 
- *We follow the notations above.*
+> This is an exercise from one of the problem sheets.
 
-Suffice to use the identity (for a fixed $t$)  
+... The problem reduces to the identity (for a fixed $t$)  
 
 $$
 f_{X}(x;\theta)=f_{X\mid T}(x\mid t;\theta)f_{T}(t;\theta), \quad \forall x \in \{ Tx=t \}
 $$  
 
-To see this, note that for any measurable, non-negative function $g$, by definition of the disintegration, we have:  
+To show this identity, note that for any measurable, non-negative function $g$, by definition of the disintegration, we have:  
 
 $$
 \int_{\{ Tx=t \}} g(x) f_{X}(x,\theta) dx = \int_{s\in \mathcal{T}} \int_{\{ Tx=s \}} g(x) f_{X\vert T}(x\ \vert\ s,\theta) f_{T} (s;\theta) \mathbf{1}\{ Tx=t \} ds dx 
@@ -284,7 +297,7 @@ $$
 
 which proves the identity.
 
-> In the original question, the formula does not have the restriction $x \in \{ Tx=t \}$, which causes some confusion.
+> In the original question, the formula does not have the restriction $x \in \\{ Tx=t \\}$, which causes some confusion.
 
 This can be used to show  
 
@@ -293,10 +306,13 @@ i_{X}(\theta)= i_{X\vert T}(\theta) +i_{T}(\theta)
 $$  
 
 
+---
 
 ## Example: The Gluing Lemma
 
-> This is useful to show the Wasserstein-2 distance satisfies the triangle inequality
+> We can use this lemma to show that the Wasserstein-p distance satisfies the triangle inequality
+
+### Set up
 
 -  $(X,\mathcal{P}(X)), (Y,\mathcal{P}(Y)),(Z,\mathcal{P}(Z))$ be three Polish probability space
 
@@ -310,7 +326,8 @@ $$
 P^{X\times Y} (x,y,z)=(x,y) \quad \text{and} \quad P^{Y\times Z}(x,y,z)=(y,z).
 $$
 
- Then there is a measure $\gamma \in \mathcal{P}(X\times Y\times Z)$ s.t.
+### Result
+Then there is a measure $\gamma \in \mathcal{P}(X\times Y\times Z)$ s.t.
 
 $$
 P^{X \times Y}_{\sharp}\gamma = \pi_1 \quad \text{and} \quad P^{Y \times Z}_{\sharp}\gamma = \pi_2.
@@ -318,13 +335,14 @@ $$
 
 > when the context is clear, we omit $\sharp$ 
 
-**Proof:** Consider the projection map $T_{1}:(x,y) \mapsto y$ , then we can form a $(T_{1},\mu)$ disintegration to write for any measurable functions $g$:
+### Proof
+Consider the projection map $T_{1}:(x,y) \mapsto y$ , then we can form a $(T_{1},\mu)$ disintegration to write for any measurable functions $g$:
 
 $$
 \int_{X\times Y} g(x,y) \pi_{1}(d(x,y)) =\int_{X} \int_{Y} g(x,y)\pi_{1,y}(dx)\ \nu(dy)
 $$
 
-> note that in fact the disintegration is on $X\times Y$ but by concentration we identify $\pi_{1}(A\times \{  b \}\vert y) \in \mathcal{P}(X\times Y)$ with the measure $\pi_{1}(A\vert y) \in \mathcal{P}(X)$
+> note that in fact the disintegration is on $X\times Y$ but by concentration we identify $\pi_{1}(A\times \\{  b \\}\vert y) \in \mathcal{P}(X\times Y)$ with the measure $\pi_{1}(A\vert y) \in \mathcal{P}(X)$
 
 $$
 \int_{Y\times Z} g(y,z) \pi_{2}(d(y,z)) =\int_{Y} \int_{Z} g(y,z)\pi_{2,y}(dz)\ \nu(dy)
@@ -339,7 +357,7 @@ $$
 which finishes the proof.
 
 
-### Wasserstein-2 distance satisfies the triangle inequality
+### Wasserstein-p distance satisfies the triangle inequality
 
 > The following is form Chapter 6 of [Villani, 2012](https://cedricvillani.org/sites/dev/files/old_images/2012/08/preprint-1.pdf)
 
