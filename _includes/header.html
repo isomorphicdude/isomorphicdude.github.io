@@ -21,7 +21,12 @@
       <ul class="social-list pure-menu-list">
         {% for social in site.data.social %}
           <li class="social-item pure-menu-item">
+            {% assign external = social.url | slice: 0, 4 %}
+            {% if external == 'http' %}
             <a class="pure-menu-link pure-button" href="{{ social.url }}" target="_blank">
+            {% else %}
+            <a class="pure-menu-link pure-button" href="{{ social.url | relative_url }}">
+            {% endif %}
               <i class="{{ social.icon | default: 'fas fa-link' }}" title="{{ social.title }}"></i>
             </a>
           </li>
