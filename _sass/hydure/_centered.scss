@@ -1,0 +1,68 @@
+.post-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: center / cover no-repeat;
+}
+
+.topbar {
+  padding: 1.5em 1em 0;
+  text-align: center;
+  text-shadow: 1px 1px 3px var(--oc-black);
+
+  a {
+    color: var(--oc-white);
+  }
+}
+
+.topbar-brand {
+  font-family: var(--brand-title-font);
+  font-size: 2em;
+  font-weight: bold;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.topbar-nav {
+  .pure-menu-link {
+    color: var(--oc-white);
+
+    &:focus,
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .current {
+    font-weight: bold;
+  }
+}
+
+.post-card {
+  max-width: 64rem;
+  margin: 1.5em auto 2em;
+  padding: 2em 2.5em;
+  background-color: var(--body-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.35);
+}
+
+/* long display equations scroll horizontally instead of overflowing the card */
+mjx-container[jax="CHTML"][display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: .2em;
+}
+
+@media (max-width: $md-screen) {
+  .post-card {
+    margin: 1em .5em;
+    padding: 1.25em;
+  }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  {% include head.html %}
+
+  <body>
+    <!-- full-page background image, same cover logic as the default layout -->
+    {% assign cover = site.cover | default: "./bigSur-min.jpg" %}
+    {% if page.cover %}
+      {% assign cover = page.cover %}
+    {% endif %}
+    {% if cover %}
+    <div class="post-background" style="background-image: url({{ cover | relative_url }});"></div>
+    {% endif %}
+
+    <header class="topbar">
+      <a class="topbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      {% if site.data.navigation %}
+      <nav class="topbar-nav pure-menu pure-menu-horizontal">
+        <ul class="pure-menu-list">
+        {% for item in site.data.navigation %}
+          <li class="pure-menu-item">
+            <a href="{{ item.url | relative_url }}" class="pure-menu-link {% if page.url == item.url %}current{% endif %}">
+              {{ item.title }}
+            </a>
+          </li>
+        {% endfor %}
+        </ul>
+      </nav>
+      {% endif %}
+    </header>
+
+    <div class="post-card">
+      <div class="main">
+        {{ content }}
+      </div>
+      {% include footer.html %}
+    </div>
+
+    {% if page.math %}
+      {% include mathjax.html %}
+    {% endif %}
+
+    {% if jekyll.environment == 'production' and site.google_analytics %}
+      {% include google-analytics.html %}
+    {% endif %}
+
+  </body>
+</html>
